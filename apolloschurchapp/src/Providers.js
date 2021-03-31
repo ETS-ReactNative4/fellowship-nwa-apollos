@@ -1,19 +1,22 @@
-import React from 'react';
-import ApollosConfig from '@apollosproject/config';
-import { Providers, NavigationService } from '@apollosproject/ui-kit';
-import { AuthProvider } from '@apollosproject/ui-auth';
-import { AnalyticsProvider } from '@apollosproject/ui-analytics';
-import { NotificationsProvider } from '@apollosproject/ui-notifications';
+import React from "react";
+import ApollosConfig from "@apollosproject/config";
+import { Providers, NavigationService } from "@apollosproject/ui-kit";
+import { AuthProvider } from "@apollosproject/ui-auth";
+import { AnalyticsProvider } from "@apollosproject/ui-analytics";
+import { NotificationsProvider } from "@apollosproject/ui-notifications";
 import {
   LiveProvider,
-  ACCEPT_FOLLOW_REQUEST,
-} from '@apollosproject/ui-connected';
-import { checkOnboardingStatusAndNavigate } from '@apollosproject/ui-onboarding';
+  ACCEPT_FOLLOW_REQUEST
+} from "@apollosproject/ui-connected";
+import { checkOnboardingStatusAndNavigate } from "@apollosproject/ui-onboarding";
 
-import ClientProvider, { client } from './client';
-import customTheme, { customIcons } from './theme';
+import ClientProvider, { client } from "./client";
+import customTheme, { customIcons } from "./theme";
+import RNAmplitude from "react-native-amplitude-analytics";
 
-const AppProviders = (props) => (
+const amplitude = new RNAmplitude(ApollosConfig.AMPLITUDE_API_KEY);
+
+const AppProviders = props => (
   <ClientProvider {...props}>
     <NotificationsProvider
       oneSignalKey={ApollosConfig.ONE_SIGNAL_KEY}
@@ -23,21 +26,26 @@ const AppProviders = (props) => (
         acceptFollowRequest: ({ requestPersonId }) =>
           client.mutate({
             mutation: ACCEPT_FOLLOW_REQUEST,
-            variables: { personId: requestPersonId },
-          }),
+            variables: { personId: requestPersonId }
+          })
       }}
     >
       <AuthProvider
-        navigateToAuth={() => NavigationService.navigate('Auth')}
+        navigateToAuth={() => NavigationService.navigate("Auth")}
         navigate={NavigationService.navigate}
         closeAuth={() =>
           checkOnboardingStatusAndNavigate({
             client,
-            navigation: NavigationService,
+            navigation: NavigationService
           })
         }
       >
-        <AnalyticsProvider>
+        <AnalyticsProvider
+          trackFunctions={[
+            ({ eventName, properties }) =>
+              amplitude.logEvent(eventName, properties)
+          ]}
+        >
           <LiveProvider>
             <Providers
               themeInput={customTheme}
