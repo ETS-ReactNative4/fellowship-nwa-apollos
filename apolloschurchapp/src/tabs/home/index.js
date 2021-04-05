@@ -59,7 +59,10 @@ const Home = () => {
                     <>
                       <LogoTitle source={require('./wordmark.png')} />
                       <SearchButton
-                        onPress={() => navigation.navigate('Search')}
+                        onPress={e => {
+                          Bugsnag.notify(e)
+                          navigation.navigate('Search')
+                        }}
                       />
                     </>
                   }
