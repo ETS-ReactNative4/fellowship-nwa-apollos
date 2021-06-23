@@ -644,6 +644,7 @@ type Query {
   suggestedFollows: [Person]
   searchPeople(name: String, first: Int, after: String): SearchPeopleResultsConnection
   followRequests: [Person]
+  usersFollowing: [Person]
 }
 
 type RockPersonDetails {
