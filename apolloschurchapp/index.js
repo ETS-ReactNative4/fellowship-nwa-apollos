@@ -1,6 +1,3 @@
-import Bugsnag from "@bugsnag/react-native";
-Bugsnag.start();
-
 import './loadConfig';
 import { AppRegistry, YellowBox } from 'react-native';
 import ApollosConfig from '@apollosproject/config';
