@@ -29,8 +29,12 @@
 			</array>
 		</dict>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mailto</string>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>0</string>
+	<string>670</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -53,18 +57,12 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like access to bluetooth (for playing audio)</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like access to bluetooth (for playing audio)</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use your location for determining your closest campus</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use your location for determining your closest campus</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use your location for determining your closest campus</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like to access your microphone (for videos)</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to access your photos</string>
 	<key>UIAppFonts</key>
@@ -102,10 +100,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>bugsnag</key>
-	<dict>
-		<key>apiKey</key>
-		<string>2968d93628d895ada4fe79ed8ade05c4</string>
-	</dict>
 </dict>
 </plist>
