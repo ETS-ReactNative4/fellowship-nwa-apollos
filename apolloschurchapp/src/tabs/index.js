@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useNavigationState } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   NavigationService,
   withTheme,
   Icon,
   Touchable,
+  H4,
+  FlexedView,
 } from '@apollosproject/ui-kit';
 import { useApolloClient } from '@apollo/client';
 import { createFeatureFeedTab } from '@apollosproject/ui-connected';
@@ -16,16 +17,10 @@ import Connect from './connect';
 import tabBarIcon from './tabBarIcon';
 
 const HeaderLogo = withTheme(({ theme }) => ({
-  style: {
-    height: theme.sizing.baseUnit * 2.5,
-    width: '60%',
-    resizeMode: 'contain',
-  },
-  source:
-    theme.type === 'light'
-      ? require('./wordmark.png')
-      : require('./wordmark.dark.png'),
-}))(Image);
+  fill: theme.colors.primary,
+  size: 24,
+  name: 'brand-icon',
+}))(Icon);
 
 const SearchIcon = withTheme(({ theme: { colors, sizing: { baseUnit } } }) => ({
   name: 'search',
@@ -43,30 +38,40 @@ SearchButton.propTypes = {
   onPress: PropTypes.func,
 };
 
-const HeaderCenter = () => <HeaderLogo source={require('./wordmark.png')} />;
+const HeaderLeft = () => <HeaderLogo />;
 const HeaderRight = () => {
   const navigation = useNavigation();
   return <SearchButton onPress={() => navigation.navigate('Search')} />;
 };
 
+const headerCenter = (title) => () => (
+  <FlexedView>
+    <H4>{title}</H4>
+  </FlexedView>
+);
+
+const screenOptions = (title) => ({
+  headerLeft: HeaderLeft,
+  headerRight: HeaderRight,
+  headerCenter: headerCenter(title),
+  headerLargeTitle: false,
+});
+
 // we nest stack inside of tabs so we can use all the fancy native header features
 const HomeTab = createFeatureFeedTab({
-  screenOptions: {
-    headerHideShadow: true,
-    headerCenter: HeaderCenter,
-    headerRight: HeaderRight,
-    headerLargeTitle: false,
-  },
+  screenOptions: screenOptions('Fellowship'),
   tabName: 'Home',
   feedName: 'HOME',
 });
 
 const EventsTab = createFeatureFeedTab({
+  screenOptions: screenOptions('Events'),
   tabName: 'Events',
   feedName: 'READ',
 });
 
 const WatchTab = createFeatureFeedTab({
+  screenOptions: screenOptions('Watch & Listen'),
   tabName: 'Watch',
   feedName: 'WATCH',
 });
@@ -89,7 +94,7 @@ const TabNavigator = () => {
     [client]
   );
   return (
-    <Navigator lazy>
+    <Navigator>
       <Screen
         name="Home"
         component={HomeTab}
