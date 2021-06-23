@@ -18,7 +18,7 @@ import tabBarIcon from './tabBarIcon';
 const HeaderLogo = withTheme(({ theme }) => ({
   style: {
     height: theme.sizing.baseUnit * 2.5,
-    width: '70%',
+    width: '60%',
     resizeMode: 'contain',
   },
   source:
@@ -61,19 +61,14 @@ const HomeTab = createFeatureFeedTab({
   feedName: 'HOME',
 });
 
-const ReadTab = createFeatureFeedTab({
-  tabName: 'Read',
+const EventsTab = createFeatureFeedTab({
+  tabName: 'Events',
   feedName: 'READ',
 });
 
 const WatchTab = createFeatureFeedTab({
   tabName: 'Watch',
   feedName: 'WATCH',
-});
-
-const PrayTab = createFeatureFeedTab({
-  tabName: 'Pray',
-  feedName: 'PRAY',
 });
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -101,19 +96,15 @@ const TabNavigator = () => {
         options={{ tabBarIcon: tabBarIcon('home') }}
       />
       <Screen
-        name="Read"
-        component={ReadTab}
-        options={{ tabBarIcon: tabBarIcon('sections') }}
-      />
-      <Screen
         name="Watch"
         component={WatchTab}
         options={{ tabBarIcon: tabBarIcon('video') }}
       />
+
       <Screen
-        name="Pray"
-        component={PrayTab}
-        options={{ tabBarIcon: tabBarIcon('like') }}
+        name="Events"
+        component={EventsTab}
+        options={{ tabBarIcon: tabBarIcon('calendar') }}
       />
       <Screen
         name="Connect"

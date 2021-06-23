@@ -65,16 +65,16 @@ ROCK_MAPPINGS:
       # When resolving "ContentSeriesContentItem" look in rock for a "ContentChannelItem"
       EntityType: ContentChannelItem
       # Used to define the subset of content channels types that use this specific type.
-      ContentChannelTypeId: [6]
+      ContentChannelTypeId: [12]
     DevotionalContentItem:
       EntityType: ContentChannelItem
-      ContentChannelId: [7]
+      ContentChannelId: [32]
     MediaContentItem:
       EntityType: ContentChannelItem
     UniversalContentItem:
       EntityType: ContentChannelItem
     WeekendContentItem:
-      ContentChannelId: [5]
+      ContentChannelId: [10]
       EntityType: ContentChannelItem
     ContentItem:
       EntityType: ContentChannelItem
@@ -93,149 +93,216 @@ ROCK_MAPPINGS:
 
 TABS:
   HOME:
-    - type: ActionBar
-      title: Welcome to Apollos
-      actions:
-        [
-          {
-            title: Check In,
-            icon: check,
-            action: OPEN_URL,
-            relatedNode: { __typename: Url, url: 'https://www.google.com' },
-          },
-        ]
-    - algorithms:
-      - type: CONTENT_FEED
-        arguments:
-          channelIds:
-            - 6
-      type: HeroList
-      primaryAction:
-        # Right now, you hardcode exactly what GraphQL should return.
-        # Long term, we hope to have a more sophisticated mechanism for driving this field
-        action: OPEN_NODE
-        title: 'Read More'
-        relatedNode:
-          __typename: UniversalContentItem
-          id: 21
     - algorithms: [DAILY_PRAYER]
       isCard: false
       type: PrayerList
       title: Daily Prayer
-    - algorithms:
-        - type: CAMPAIGN_ITEMS
-          channelIds:
-            - 9
-      type: HeroList
-      isFeatured: true
-      subtitle: Featured
-    - title: FOR YOU
-      algorithms: [SERMON_CHILDREN, PERSONA_FEED]
-      subtitle: Explore what God calls you to today
-      type: ActionList
-    - algorithms: [PERSONA_FEED]
-      subtitle: Continue
-      type: HorizontalCardList
-    - title: RECOMMENDED
-      algorithms: [SERMON_CHILDREN]
-      subtitle: For Him
-      type: VerticalCardList
-    - title: BULLETIN
-      subtitle: What's happening at apollos?
-      type: ActionList
+    - title: Daily Scripture
       algorithms:
         - type: CONTENT_FEED
           arguments:
+            limit: 1
             channelIds:
-              - 13
-        - type: UPCOMING_EVENTS
-
-  READ:
-    - algorithms:
+              - 32
+      type: VerticalCardList
+    - title: Announcements
+      algorithms:
         - type: CONTENT_FEED
           arguments:
+            limit: 6
             channelIds:
-              - 7
-            limit: 3
+              - 19
       type: HorizontalCardList
-      subtitle: Devotionals
-      primaryAction:
-        action: OPEN_CHANNEL
-        title: 'Read More'
-        relatedNode:
-          __typename: ContentChannel
-          id: 7
-          name: Devotionals
+    # - type: ActionBar
+    #   title: Welcome to Apollos
+    #   actions:
+    #     [
+    #       {
+    #         title: Check In,
+    #         icon: check,
+    #         action: OPEN_URL,
+    #         relatedNode: { __typename: Url, url: 'https://www.google.com' },
+    #       },
+    #     ]
+    # - algorithms:
+    #   - type: CONTENT_FEED
+    #     arguments:
+    #       channelIds:
+    #         - 6
+    #   type: HeroList
+    #   primaryAction:
+    #     # Right now, you hardcode exactly what GraphQL should return.
+    #     # Long term, we hope to have a more sophisticated mechanism for driving this field
+    #     action: OPEN_NODE
+    #     title: 'Read More'
+    #     relatedNode:
+    #       __typename: UniversalContentItem
+    #       id: 21
+    # - algorithms: [DAILY_PRAYER]
+    #   isCard: false
+    #   type: PrayerList
+    #   title: Daily Prayer
+    # - algorithms:
+    #     - type: CAMPAIGN_ITEMS
+    #       channelIds:
+    #         - 9
+    #   type: HeroList
+    #   isFeatured: true
+    #   subtitle: Featured
+    # - title: FOR YOU
+    #   algorithms: [SERMON_CHILDREN, PERSONA_FEED]
+    #   subtitle: Explore what God calls you to today
+    #   type: ActionList
+
+    # - title: RECOMMENDED
+    #   algorithms: [SERMON_CHILDREN]
+    #   subtitle: For Him
+    #   type: VerticalCardList
+    # - title: BULLETIN
+    #   subtitle: What's happening at apollos?
+    #   type: ActionList
+    #   algorithms:
+    #     - type: CONTENT_FEED
+    #       arguments:
+    #         channelIds:
+    #           - 13
+    #     - type: UPCOMING_EVENTS
+
+  READ: # AKA EVENTS!
+    - title: Recommended
+      algorithms: [UPCOMING_EVENTS]
+      type: VerticalCardList
+    - title: Events by ministry
+      subtitle: Find your next event
+      algorithms: [UPCOMING_EVENTS]
+      type: ActionList
 
   WATCH:
     - algorithms:
-        - type: LATEST_SERIES_CHILDREN
-          arguments:
-            channelId: 4
+      - type: CONTENT_FEED
+        arguments:
+          channelIds:
+            - 10
+          limit: 4
+      title: Latest messages
       type: HeroList
-      title: Catch up
-      subtitle: Latest Series
-    - algorithms:
-        - type: CONTENT_FEED
-          arguments:
-            channelIds:
-              - 4
-      type: VerticalCardList
-      subtitle: All series
-    - algorithms:
-        - type: CONTENT_FEED
-          arguments:
-            channelIds:
-              - 3
-            limit: 3
-      type: HorizontalCardList
-      subtitle: Sermons
-    - algorithms:
-        - type: CONTENT_FEED
-          arguments:
-            channelIds:
-              - 5
-            limit: 3
-      type: HorizontalCardList
-      subtitle: Podcasts
       primaryAction:
+        # Right now, you hardcode exactly what GraphQL should return.
+        # Long term, we hope to have a more sophisticated mechanism for driving this field
         action: OPEN_CHANNEL
-        title: 'Read More'
+        title: 'All messages'
         relatedNode:
           __typename: ContentChannel
-          id: 5
-          name: Podcasts
-    - algorithms:
-        - type: CONTENT_FEED
-          arguments:
-            channelIds:
-              - 6
-            limit: 3
-      type: HorizontalCardList
-      title: Videos
-      primaryAction:
-        action: OPEN_CHANNEL
-        title: 'Read More'
-        relatedNode:
-          __typename: ContentChannel
-          id: 6
-          name: Videos
-    - algorithms:
-        - type: CONTENT_FEED
-          arguments:
-            channelIds:
-              - 8
-            limit: 3
-      type: HorizontalCardList
-      subtitle: Something Else
+          id: 10
 
-  PRAY:
+    - title: Jump into
+      subtitle: Knowing God By Name (TODO) # Missing Content Channel in Rock
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            limit: 6
+            channelIds:
+              - 19
+      type: HorizontalCardList
+
+    - subtitle: Life Change Stories (TODO) # Missing Content Channel in Rock
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            limit: 6
+            channelIds:
+              - 19
+      type: HorizontalCardList
+
+    - title: Listen
+      subtitle: Podcasts (TODO) # Need custom algo reading from XML
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            limit: 6
+            channelIds:
+              - 19
+      type: HorizontalCardList
+
+    - title: Listen
+      subtitle: Worship (TODO) # Need custom algo reading from XML
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            limit: 6
+            channelIds:
+              - 19
+      type: HorizontalCardList
+
+    # - algorithms:
+    #     - type: LATEST_SERIES_CHILDREN
+    #       arguments:
+    #         channelId: 4
+    #   type: HeroList
+    #   title: Catch up
+    #   subtitle: Latest Series
+    # - algorithms:
+    #     - type: CONTENT_FEED
+    #       arguments:
+    #         channelIds:
+    #           - 4
+    #   type: VerticalCardList
+    #   subtitle: All series
+    # - algorithms:
+    #     - type: CONTENT_FEED
+    #       arguments:
+    #         channelIds:
+    #           - 3
+    #         limit: 3
+    #   type: HorizontalCardList
+    #   subtitle: Sermons
+    # - algorithms:
+    #     - type: CONTENT_FEED
+    #       arguments:
+    #         channelIds:
+    #           - 5
+    #         limit: 3
+    #   type: HorizontalCardList
+    #   subtitle: Podcasts
+    #   primaryAction:
+    #     action: OPEN_CHANNEL
+    #     title: 'Read More'
+    #     relatedNode:
+    #       __typename: ContentChannel
+    #       id: 5
+    #       name: Podcasts
+    # - algorithms:
+    #     - type: CONTENT_FEED
+    #       arguments:
+    #         channelIds:
+    #           - 6
+    #         limit: 3
+    #   type: HorizontalCardList
+    #   title: Videos
+    #   primaryAction:
+    #     action: OPEN_CHANNEL
+    #     title: 'Read More'
+    #     relatedNode:
+    #       __typename: ContentChannel
+    #       id: 6
+    #       name: Videos
+    # - algorithms:
+    #     - type: CONTENT_FEED
+    #       arguments:
+    #         channelIds:
+    #           - 8
+    #         limit: 3
+    #   type: HorizontalCardList
+    #   subtitle: Something Else
+
+  PRAY: # NOT USED
     - algorithms: [DAILY_PRAYER]
       isCard: false
       type: PrayerList
       title: Daily Prayer
     - type: VerticalPrayerList
       title: Your Prayers
+
   CONNECT:
     - type: ActionTable
       title: Connect to Apollos
