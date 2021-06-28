@@ -169,13 +169,21 @@ TABS:
     #     - type: UPCOMING_EVENTS
 
   READ: # AKA EVENTS!
-    - title: Recommended
-      algorithms: [UPCOMING_EVENTS]
-      type: VerticalCardList
-    - title: Events by ministry
-      subtitle: Find your next event
-      algorithms: [UPCOMING_EVENTS]
-      type: ActionList
+    - algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            limit: 7
+            channelIds: [11]
+      type: HeroList
+      primaryAction:
+          action: OPEN_URL
+          title: All Events & Classes
+          relatedNode:
+            __typename: Url
+            url: 'https://www.fellowshipnwa.org/eventsandclasses'
+    # - title: Community
+    #   algorithms: [UPCOMING_EVENTS]
+    #   type: HorizontalCardList
 
   WATCH:
     - algorithms:
@@ -195,44 +203,44 @@ TABS:
           __typename: ContentChannel
           id: 10
 
-    - title: Jump into
-      subtitle: Knowing God By Name (TODO) # Missing Content Channel in Rock
+    # - title: Jump into
+    #   subtitle: Knowing God By Name (TODO) # Missing Content Channel in Rock
+    #   algorithms:
+    #     - type: CONTENT_FEED
+    #       arguments:
+    #         limit: 6
+    #         channelIds:
+    #           - 19
+    #   type: HorizontalCardList
+
+    - title: All Series # Missing Content Channel in Rock
       algorithms:
         - type: CONTENT_FEED
           arguments:
             limit: 6
             channelIds:
-              - 19
+              - 12
       type: HorizontalCardList
 
-    - subtitle: Life Change Stories (TODO) # Missing Content Channel in Rock
-      algorithms:
-        - type: CONTENT_FEED
-          arguments:
-            limit: 6
-            channelIds:
-              - 19
-      type: HorizontalCardList
+    # - title: Listen
+    #   subtitle: Podcasts (TODO) # Need custom algo reading from XML
+    #   algorithms:
+    #     - type: CONTENT_FEED
+    #       arguments:
+    #         limit: 6
+    #         channelIds:
+    #           - 19
+    #   type: HorizontalCardList
 
-    - title: Listen
-      subtitle: Podcasts (TODO) # Need custom algo reading from XML
-      algorithms:
-        - type: CONTENT_FEED
-          arguments:
-            limit: 6
-            channelIds:
-              - 19
-      type: HorizontalCardList
-
-    - title: Listen
-      subtitle: Worship (TODO) # Need custom algo reading from XML
-      algorithms:
-        - type: CONTENT_FEED
-          arguments:
-            limit: 6
-            channelIds:
-              - 19
-      type: HorizontalCardList
+    # - title: Listen
+    #   subtitle: Worship (TODO) # Need custom algo reading from XML
+    #   algorithms:
+    #     - type: CONTENT_FEED
+    #       arguments:
+    #         limit: 6
+    #         channelIds:
+    #           - 19
+    #   type: HorizontalCardList
 
     # - algorithms:
     #     - type: LATEST_SERIES_CHILDREN

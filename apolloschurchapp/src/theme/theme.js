@@ -8,9 +8,11 @@
  * on a per-component basis with "overrides"
  */
 const colors = {
-  primary: '#738082',
-  secondary: '#000000',
-  tertiary: '#738082',
+  primary: '#27272E',
+  secondary: '#707F75',
+  tertiary: '#AFAFAF',
+
+  screen: '#F8F8FB',
 };
 /* Base Typography sizing and fonts.
  * To control speicfic styles used on different type components (like H1, H2, etc), see "overrides"
@@ -29,7 +31,18 @@ const colors = {
 // export const alpha = {};
 
 /* Base overlays. These are used as configuration for LinearGradients across the app */
-// export const overlays = () => ({});
+const overlays = ({ colors: themeColors, type: themeType }) => ({
+  'background-gradient': ({ colors: customColors }) => ({
+    colors: customColors || [
+      themeColors.background.screen,
+      themeColors.background.screen,
+    ],
+    // default props from `react-native-linear-gradient`
+    start: { x: 0.5, y: 0.0 },
+    end: { x: 0.5, y: 1.0 },
+    locations: null,
+  }),
+});
 
 /* Overrides allow you to override the styles of any component styled using the `styled` HOC. You
  * can also override the props of any component using the `withTheme` HOC. See examples below:
@@ -55,4 +68,5 @@ const colors = {
 
 export default {
   colors,
+  overlays,
 };

@@ -94,7 +94,7 @@ const App = () => (
               component={ContentSingle}
               options={{
                 title: 'Content',
-                stackPresentation: 'push',
+                stackPresentation: 'containedModal',
               }}
             />
             <Screen
@@ -102,7 +102,7 @@ const App = () => (
               name="ContentFeed"
               options={({ route }) => ({
                 title: route.params.itemTitle || 'Content Feed',
-                stackPresentation: 'push',
+                stackPresentation: 'modal',
               })}
             />
 

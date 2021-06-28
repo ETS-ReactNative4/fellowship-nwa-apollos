@@ -59,19 +59,19 @@ const screenOptions = (title) => ({
 
 // we nest stack inside of tabs so we can use all the fancy native header features
 const HomeTab = createFeatureFeedTab({
-  screenOptions: screenOptions('Fellowship'),
+  options: screenOptions('Fellowship'),
   tabName: 'Home',
   feedName: 'HOME',
 });
 
 const EventsTab = createFeatureFeedTab({
-  screenOptions: screenOptions('Events'),
+  options: screenOptions('Events'),
   tabName: 'Events',
   feedName: 'READ',
 });
 
 const WatchTab = createFeatureFeedTab({
-  screenOptions: screenOptions('Watch & Listen'),
+  options: screenOptions('Watch & Listen'),
   tabName: 'Watch',
   feedName: 'WATCH',
 });

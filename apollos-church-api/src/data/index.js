@@ -18,7 +18,7 @@ import {
   Followings,
   Interactions,
   RockConstants,
-  ContentItem,
+  // ContentItem,
   ContentChannel,
   Sharable,
   Auth,
@@ -29,7 +29,7 @@ import {
   Group,
   Feature,
   FeatureFeed,
-  ActionAlgorithm,
+  // ActionAlgorithm,
   Event,
   PrayerRequest,
   Persona,
@@ -38,6 +38,8 @@ import {
 } from '@apollosproject/data-connector-rock';
 
 import * as Theme from './theme';
+import * as ActionAlgorithm from './ActionAlgorithms';
+import * as ContentItem from './ContentItem';
 
 // This module is used to attach Rock User updating to the OneSignal module.
 // This module includes a Resolver that overides a resolver defined in `OneSignal`
