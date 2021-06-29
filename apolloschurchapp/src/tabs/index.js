@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigation } from '@react-navigation/native';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   NavigationService,
   withTheme,
@@ -76,7 +76,7 @@ const WatchTab = createFeatureFeedTab({
   feedName: 'WATCH',
 });
 
-const { Navigator, Screen } = createMaterialBottomTabNavigator();
+const { Navigator, Screen } = createBottomTabNavigator();
 
 const TabNavigator = () => {
   const client = useApolloClient();
@@ -94,7 +94,7 @@ const TabNavigator = () => {
     [client]
   );
   return (
-    <Navigator>
+    <Navigator tabBarOptions={{ showLabel: false }}>
       <Screen
         name="Home"
         component={HomeTab}
@@ -105,7 +105,6 @@ const TabNavigator = () => {
         component={WatchTab}
         options={{ tabBarIcon: tabBarIcon('video') }}
       />
-
       <Screen
         name="Events"
         component={EventsTab}

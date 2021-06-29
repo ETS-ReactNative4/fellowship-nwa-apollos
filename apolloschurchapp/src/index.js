@@ -22,17 +22,16 @@ import {
 import Passes from '@apollosproject/ui-passes';
 import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
 import Auth, { ProtectedRoute } from '@apollosproject/ui-auth';
+import { Onboarding, Landing } from '@apollosproject/ui-onboarding';
 
 import {
   ContentFeedConnected,
   SearchScreenConnected,
 } from '@apollosproject/ui-connected';
-import { Onboarding } from '@apollosproject/ui-onboarding';
 import Providers from './Providers';
 import ContentSingle from './content-single';
 import Event from './event';
 import Tabs from './tabs';
-import LandingScreen from './ui/LandingScreen';
 import customTheme, { customIcons } from './theme';
 
 enableScreens(); // improves performance for react-navigation
@@ -62,13 +61,18 @@ const ThemedNavigationContainer = withTheme(({ theme, ...props }) => ({
       primary: theme.colors.secondary,
       background: theme.colors.background.screen,
       card: theme.colors.background.paper,
-      text: theme.colors.text.primary,
+      text: theme.colors.text.secondary,
     },
   },
   ...props,
 }))(({ containerRef, ...props }) => (
   <NavigationContainer ref={containerRef} {...props} />
 ));
+
+const LandingToAuth = () => {
+  const navigation = useNavigation();
+  return <Landing onPressPrimary={() => navigation.navigate('Auth')} />;
+};
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -133,7 +137,7 @@ const App = () => (
                 stackPresentation: 'push',
               }}
             />
-            <Screen name="LandingScreen" component={LandingScreen} />
+            <Screen name="LandingScreen" component={LandingToAuth} />
             <Screen name="Search" component={SearchScreenConnected} />
           </Navigator>
         </Providers>
