@@ -17,7 +17,26 @@ const colors = {
 /* Base Typography sizing and fonts.
  * To control speicfic styles used on different type components (like H1, H2, etc), see "overrides"
  */
-// const typography = {};
+const typography = {
+  sans: {
+    regular: {
+      default: 'ProximaNova-Regular',
+      italic: 'ProximaNova-RegularIt',
+    },
+    medium: {
+      default: 'ProximaNova-Medium',
+      italic: 'ProximaNova-MediumIt',
+    },
+    bold: {
+      default: 'ProximaNova-Semibold',
+      italic: 'ProximaNova-SemiboldIt',
+    },
+    black: {
+      default: 'ProximaNova-Bold',
+      italic: 'ProximaNova-BoldIt',
+    },
+  },
+};
 
 /* Responsive breakpoints */
 // export const breakpoints = {};
@@ -31,7 +50,7 @@ const colors = {
 // export const alpha = {};
 
 /* Base overlays. These are used as configuration for LinearGradients across the app */
-const overlays = ({ colors: themeColors, type: themeType }) => ({
+const overlays = ({ colors: themeColors }) => ({
   'background-gradient': ({ colors: customColors }) => ({
     colors: customColors || [
       themeColors.background.screen,
@@ -69,4 +88,5 @@ const overlays = ({ colors: themeColors, type: themeType }) => ({
 export default {
   colors,
   overlays,
+  typography,
 };

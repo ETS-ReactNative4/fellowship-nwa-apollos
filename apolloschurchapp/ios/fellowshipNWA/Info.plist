@@ -85,6 +85,22 @@
 		<string>Inter-UI-Medium.otf</string>
 		<string>Inter-UI-MediumItalic.otf</string>
 		<string>Inter-UI-Regular.otf</string>
+		<string>ProximaNova-Black.otf</string>
+		<string>ProximaNova-BlackIt.otf</string>
+		<string>ProximaNova-Bold.otf</string>
+		<string>ProximaNova-BoldIt.otf</string>
+		<string>ProximaNova-Extrabld.otf</string>
+		<string>ProximaNova-ExtrabldIt.otf</string>
+		<string>ProximaNova-Light.otf</string>
+		<string>ProximaNova-LightIt.otf</string>
+		<string>ProximaNova-Medium.otf</string>
+		<string>ProximaNova-MediumIt.otf</string>
+		<string>ProximaNova-Regular.otf</string>
+		<string>ProximaNova-RegularIt.otf</string>
+		<string>ProximaNova-Semibold.otf</string>
+		<string>ProximaNova-SemiboldIt.otf</string>
+		<string>ProximaNova-Thin.otf</string>
+		<string>ProximaNova-ThinIt.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
