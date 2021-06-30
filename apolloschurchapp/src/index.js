@@ -22,7 +22,7 @@ import {
 import Passes from '@apollosproject/ui-passes';
 import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
 import Auth, { ProtectedRoute } from '@apollosproject/ui-auth';
-import { Onboarding, Landing } from '@apollosproject/ui-onboarding';
+import { Onboarding } from '@apollosproject/ui-onboarding';
 
 import {
   ContentFeedConnected,
@@ -33,6 +33,8 @@ import ContentSingle from './content-single';
 import Event from './event';
 import Tabs from './tabs';
 import customTheme, { customIcons } from './theme';
+
+import Landing from './onboarding/Landing';
 
 enableScreens(); // improves performance for react-navigation
 
@@ -68,11 +70,6 @@ const ThemedNavigationContainer = withTheme(({ theme, ...props }) => ({
 }))(({ containerRef, ...props }) => (
   <NavigationContainer ref={containerRef} {...props} />
 ));
-
-const LandingToAuth = () => {
-  const navigation = useNavigation();
-  return <Landing onPressPrimary={() => navigation.navigate('Auth')} />;
-};
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -137,7 +134,7 @@ const App = () => (
                 stackPresentation: 'push',
               }}
             />
-            <Screen name="LandingScreen" component={LandingToAuth} />
+            <Screen name="LandingScreen" component={Landing} />
             <Screen name="Search" component={SearchScreenConnected} />
           </Navigator>
         </Providers>

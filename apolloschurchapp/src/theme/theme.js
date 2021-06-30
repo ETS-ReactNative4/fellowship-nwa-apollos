@@ -8,7 +8,7 @@
  * on a per-component basis with "overrides"
  */
 const colors = {
-  primary: '#27272E',
+  primary: '#707F75', // 27272E',
   secondary: '#707F75',
   tertiary: '#AFAFAF',
 
