@@ -186,7 +186,7 @@
   dependencies:
     js-yaml "^3.12.0"
 
-"@apollosproject/config@^2.25.1-canary.2":
+"@apollosproject/config@^2.25.0":
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/@apollosproject/config/-/config-2.25.0.tgz#643c4e41bfac7b15be1c46651c9b703e2bdd136e"
   integrity sha512-oVB2Qz1lrnuHeddnEWurlK6ZAYwdeCk5d+pOQiEtXSuZBfU/G3UfY5fNgs/YFTAQKqrwNc/xwScOJ1x5gnaEsA==
@@ -313,7 +313,7 @@
   resolved "https://registry.yarnpkg.com/@apollosproject/eslint-config/-/eslint-config-2.22.0.tgz#5fa50bacb6e3080a34e4e120243f74fe87ffd194"
   integrity sha512-tEnu0kq2IrahyjF75pt9VM5XOrsa8p2afXBll8y3zdBN5MdG9tOs6MBFqiF7T7u/1sTG3i58f4MQ91a5ZhKCrg==
 
-"@apollosproject/eslint-config@^2.25.1-canary.2":
+"@apollosproject/eslint-config@^2.25.0":
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/@apollosproject/eslint-config/-/eslint-config-2.25.0.tgz#e8ea60e160834f04a76cd44bf6d8d9d51c7d71c7"
   integrity sha512-NtdxGpDI31CbcqkB/WS56qINZYBwcgasq/NDAEQmi7OVxgsOvNAjLzELb6kV7AfSiufacYAZTUlbM8Bi4pedPg==
@@ -373,7 +373,7 @@
     graphql-tag "2.9.2"
     lodash "^4.17.11"
 
-"@apollosproject/ui-fragments@^2.25.1-canary.2":
+"@apollosproject/ui-fragments@^2.25.0":
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/@apollosproject/ui-fragments/-/ui-fragments-2.25.0.tgz#2865d1b16d6333d9817989c2d376a5b6da0c7ec3"
   integrity sha512-a5n6DYXNUZIVp1eQTnRXljcGhdaZcDzX1aT5dkiWhs7WLaqJudvxODDN4GHEaDV3rqSnWKGhgb1oI1Lt2EFuJg==
@@ -468,7 +468,7 @@
   resolved "https://registry.yarnpkg.com/@apollosproject/ui-scripture/-/ui-scripture-2.25.1-canary.2.tgz#e4aad450c4b5d61b9c10de7b17639e675db836a6"
   integrity sha512-gCAWZHW+UWmI2KJkC3JnqNgdG9eU6Lly7h4bTQuCn4heQg1T1ryQTpktndWm12fi9jnG4//jAzPOmDzjjf+S7Q==
 
-"@apollosproject/ui-storybook@^2.25.1-canary.2":
+"@apollosproject/ui-storybook@^2.25.0":
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/@apollosproject/ui-storybook/-/ui-storybook-2.25.0.tgz#e852e95b14e2bb743b20b8be3443ec99e8d47847"
   integrity sha512-3E7+AqXAwW4cygBQ4O8degvuo6AUiN1uc0pCV1p0xqflFGmkIAbkRIe+NQ4YlWZKfQCsiiTJiAbazjfC1EEkEQ==
@@ -478,7 +478,7 @@
     "@storybook/addons" "6.3.1"
     "@storybook/react-native" "5.3.23"
 
-"@apollosproject/ui-test-utils@^2.25.1-canary.2":
+"@apollosproject/ui-test-utils@^2.25.0":
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/@apollosproject/ui-test-utils/-/ui-test-utils-2.25.0.tgz#b2344e6e2f1e129cc172cbae1877335b6555185d"
   integrity sha512-Q5+tzpUB91PNLx2KnpihSOpKC1Nc6Rin1lCE3+37ZDafRCYlp5NMO1eMvvx3RlgN2kqKnvR3wnYTvaL2J99Ohg==
