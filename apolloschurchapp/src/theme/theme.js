@@ -18,8 +18,8 @@ const colors = {
  * To control speicfic styles used on different type components (like H1, H2, etc), see "overrides"
  */
 const typography = {
-  baseFontSize: 20,
-  baseLineHeight: 32.36, // 1.618 ratio
+  baseFontSize: 18,
+  baseLineHeight: 27, // 1.5 ratio
   sans: {
     regular: {
       default: 'ProximaNova-Regular',
