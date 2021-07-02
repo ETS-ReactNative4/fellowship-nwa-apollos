@@ -10,14 +10,19 @@ const Toolbar = () => {
       {(openUrl) => (
         <ActionBar>
           <ActionBarItem
-            onPress={() => navigation.navigate('Passes')}
+            onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
             icon="check"
             label="Check-in"
           />
           <ActionBarItem
-            onPress={() => openUrl('https://apollosrock.newspring.cc/page/186')}
+            onPress={() => openUrl('https://www.fellowshipnwa.org/give')}
             icon="download"
             label="Give"
+          />
+          <ActionBarItem
+            onPress={() => openUrl('https://www.fellowshipnwa.org/serve')}
+            icon="groups"
+            label="Volunteer"
           />
         </ActionBar>
       )}

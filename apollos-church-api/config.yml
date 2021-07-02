@@ -170,10 +170,10 @@ TABS:
 
   READ: # AKA EVENTS!
     - algorithms:
-        - type: CONTENT_FEED
-          arguments:
-            limit: 7
-            channelIds: [11]
+      - type: CONTENT_FEED
+        arguments:
+          limit: 7
+          channelIds: [11]
       type: HeroList
       primaryAction:
           action: OPEN_URL
