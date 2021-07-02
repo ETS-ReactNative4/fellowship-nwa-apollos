@@ -39,34 +39,57 @@ const ActionTable = () => {
           </RowHeader>
           <TableView>
             <Touchable
-              onPress={() =>
-                openUrl('https://apollosrock.newspring.cc/page/235')
-              }
+              onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
             >
               <Cell>
-                <CellText>Find a serving opportunity</CellText>
+                <CellText>Contact us</CellText>
                 <CellIcon name="arrow-next" />
               </Cell>
             </Touchable>
             <Divider />
             <Touchable
               onPress={() =>
-                openUrl('https://apollosrock.newspring.cc/page/236')
-              }
-            >
-              <Cell>
-                <CellText>Join a small group</CellText>
-                <CellIcon name="arrow-next" />
-              </Cell>
-            </Touchable>
-            <Divider />
-            <Touchable
-              onPress={() =>
-                openUrl('https://apollosrock.newspring.cc/page/233')
+                openUrl('https://www.fellowshipnwa.org/prayerrequest')
               }
             >
               <Cell>
                 <CellText>I need prayer</CellText>
+                <CellIcon name="arrow-next" />
+              </Cell>
+            </Touchable>
+            <Divider />
+            <Touchable
+              onPress={() => openUrl('https://fellowshipnwa.org/baptism')}
+            >
+              <Cell>
+                <CellText>Get baptized</CellText>
+                <CellIcon name="arrow-next" />
+              </Cell>
+            </Touchable>
+            <Divider />
+            <Touchable
+              onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
+            >
+              <Cell>
+                <CellText>Get care</CellText>
+                <CellIcon name="arrow-next" />
+              </Cell>
+            </Touchable>
+            <Divider />
+            <Touchable
+              onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
+            >
+              <Cell>
+                <CellText>Our locations</CellText>
+                <CellIcon name="arrow-next" />
+              </Cell>
+            </Touchable>
+            <Divider />
+            <Touchable
+              onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
+            >
+              <Cell>
+                <CellText>Report an issue</CellText>
                 <CellIcon name="arrow-next" />
               </Cell>
             </Touchable>
