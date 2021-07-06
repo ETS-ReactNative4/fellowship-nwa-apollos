@@ -96,8 +96,8 @@ TABS:
     - algorithms: [DAILY_PRAYER]
       isCard: false
       type: PrayerList
-      title: Daily Prayer
-    - title: Daily Scripture
+      subtitle: Daily Prayer
+    - subtitle: Daily Scripture
       algorithms:
         - type: CONTENT_FEED
           arguments:
@@ -105,7 +105,7 @@ TABS:
             channelIds:
               - 32
       type: VerticalCardList
-    - title: Announcements
+    - subtitle: Announcements
       algorithms:
         - type: CONTENT_FEED
           arguments:
@@ -192,7 +192,7 @@ TABS:
           channelIds:
             - 10
           limit: 4
-      title: Latest messages
+      subtitle: Latest messages
       type: HeroList
       primaryAction:
         # Right now, you hardcode exactly what GraphQL should return.
@@ -213,7 +213,7 @@ TABS:
     #           - 19
     #   type: HorizontalCardList
 
-    - title: All Series # Missing Content Channel in Rock
+    - subtitle: All Series # Missing Content Channel in Rock
       algorithms:
         - type: CONTENT_FEED
           arguments:
