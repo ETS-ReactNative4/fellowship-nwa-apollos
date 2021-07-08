@@ -96,26 +96,47 @@ const overlays = ({ colors: themeColors }) => ({
  */
 // This is not right...yet.
 const overrides = {
-  // 'ui-onboarding.Features.BackgroundComponent.FullScreenImage': {
-  //   source: '../onboarding/Welcome_2x.png',
-  // },
   'ui-onboarding.Slide.SlideContent.Title': {
-    alignSelf: 'center',
+    textAlign: 'center',
+  },
+  'ui-onboarding.Slide.SlideContent.Description': {
+    textAlign: 'center',
   },
   'ui-onboarding.Features': {
     description:
       "We'd like to help personalize your profile to make the most of your online experience.",
+    // eslint-disable-next-line react/display-name
     BackgroundComponent: () => (
-      <Image source={require('../onboarding/Welcome_2x.png')} />
+      <Image
+        alignSelf={'center'}
+        marginTop={'15%'}
+        source={require('../onboarding/Welcome_2x.png')}
+      />
     ),
   },
   'ui-onboarding.LocationFinder': {
     description:
       "We'll use your location to connect you with your nearby campus and community.",
+    // eslint-disable-next-line react/display-name
+    BackgroundComponent: () => (
+      <Image
+        alignSelf={'center'}
+        marginTop={'15%'}
+        source={require('../onboarding/Gather_2x.png')}
+      />
+    ),
   },
   'ui-onboarding.AskNotifications': {
     description:
       "We'll let you know when important things are happening and keep you in the loop.",
+    // eslint-disable-next-line react/display-name
+    BackgroundComponent: () => (
+      <Image
+        alignSelf={'center'}
+        marginTop={'15%'}
+        source={require('../onboarding/Connect_2x.png')}
+      />
+    ),
   },
 };
 

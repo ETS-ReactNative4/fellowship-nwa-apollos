@@ -57,6 +57,8 @@ BIBLE_API:
     KJV: 'de4e12af7f28f599-02'
 CLOUDINARY:
   URL: ${CLOUDINARY_URL}
+# SUGGESTED_FOLLOWS:
+# TODO: find out what these should actually be.
 
 # This key holds various properties that allow our GraphQL server to map to your Rock Instance
 ROCK_MAPPINGS:
