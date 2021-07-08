@@ -11,7 +11,11 @@ import {
 } from '@apollosproject/ui-connected';
 import { checkOnboardingStatusAndNavigate } from '@apollosproject/ui-onboarding';
 
+import RNAmplitude from 'react-native-amplitude-analytics';
+
 import ClientProvider, { client } from './client';
+
+const amplitude = new RNAmplitude(ApollosConfig.AMPLITUDE_API_KEY);
 
 const AppProviders = (props) => (
   <ClientProvider {...props}>
@@ -49,7 +53,12 @@ const AppProviders = (props) => (
           })
         }
       >
-        <AnalyticsProvider>
+        <AnalyticsProvider
+          trackFunctions={[
+            ({ eventName, properties }) =>
+              amplitude.logEvent(eventName, properties),
+          ]}
+        >
           <LiveProvider>{props.children}</LiveProvider>
         </AnalyticsProvider>
       </AuthProvider>
