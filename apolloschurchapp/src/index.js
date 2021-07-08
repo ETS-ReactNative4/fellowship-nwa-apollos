@@ -63,7 +63,7 @@ const ThemedNavigationContainer = withTheme(({ theme, ...props }) => ({
       primary: theme.colors.secondary,
       background: theme.colors.background.screen,
       card: theme.colors.background.paper,
-      text: theme.colors.text.secondary,
+      text: theme.colors.text.primary,
     },
   },
   ...props,
