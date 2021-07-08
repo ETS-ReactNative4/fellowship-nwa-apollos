@@ -1,3 +1,5 @@
+import React from 'react';
+import { Image } from 'react-native';
 /* Add your custom theme definitions below. Anything that is supported in UI-Kit Theme can be
  overridden and/or customized here! */
 
@@ -90,12 +92,15 @@ const overrides = {
   // 'ui-onboarding.Features.BackgroundComponent.FullScreenImage': {
   //   source: '../onboarding/Welcome_2x.png',
   // },
+  'ui-onboarding.Slide.SlideContent.Title': {
+    alignSelf: 'center',
+  },
   'ui-onboarding.Features': {
     description:
       "We'd like to help personalize your profile to make the most of your online experience.",
-    // BackgroundComponent: {
-    //   source: '../onboarding/Welcome_2x.png',
-    // },
+    BackgroundComponent: () => (
+      <Image source={require('../onboarding/Welcome_2x.png')} />
+    ),
   },
   'ui-onboarding.LocationFinder': {
     description:
