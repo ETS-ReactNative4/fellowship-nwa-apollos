@@ -7,13 +7,20 @@
  * elements are colored, go there. The next level of control comes
  * on a per-component basis with "overrides"
  */
-const colors = {
-  primary: '#707F75', // 27272E',
+const lightColors = {
+  primary: '#27272E', // 27272E',
   secondary: '#707F75',
   tertiary: '#AFAFAF',
 
   screen: '#F8F8FB',
 };
+
+const darkColors = {
+  primary: '#AFAFAF', // 27272E',
+  secondary: '#707F75',
+  tertiary: '#AFAFAF',
+};
+
 /* Base Typography sizing and fonts.
  * To control speicfic styles used on different type components (like H1, H2, etc), see "overrides"
  */
@@ -108,7 +115,8 @@ const overrides = {
 };
 
 export default {
-  colors,
+  lightColors,
+  darkColors,
   overlays,
   overrides,
   typography,

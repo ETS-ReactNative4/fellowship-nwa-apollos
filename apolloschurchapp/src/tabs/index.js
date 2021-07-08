@@ -93,6 +93,7 @@ const TabNavigator = () => {
     },
     [client]
   );
+
   return (
     <Navigator tabBarOptions={{ showLabel: false }}>
       <Screen
