@@ -364,7 +364,7 @@
     graphql-tag "2.9.2"
     yup "^0.27.0"
 
-"@apollosproject/ui-connected@^2.25.1-canary.7":
+"@apollosproject/ui-connected@^2.25.1-canary.9":
   version "2.25.1-canary.9"
   resolved "https://registry.yarnpkg.com/@apollosproject/ui-connected/-/ui-connected-2.25.1-canary.9.tgz#ffcb6cc8079f539d08faf10e3b0d630f7df087e0"
   integrity sha512-nxHMcwPmzz8cfGdNiuIWDzxzZITP+NxK+JYAqTQBIq2sguyfNEyYI0/aBeN1xuHhtGVewIpAkYjSgv6NgfQweQ==
@@ -388,10 +388,10 @@
     entities "^1.1.2"
     htmlparser2 "3.9.2"
 
-"@apollosproject/ui-kit@^2.25.1-canary.7":
-  version "2.25.1-canary.7"
-  resolved "https://registry.yarnpkg.com/@apollosproject/ui-kit/-/ui-kit-2.25.1-canary.7.tgz#c2aa30bca5e847a32119355fb48717e3a41d4c3e"
-  integrity sha512-94IXAvO9DpmgpobDIhJtpZC+8fSlvnlT7JpX2Trxexp2zSNtPohbeKoQe4PLYzl/IBglmqB9SfhfJrept0obhQ==
+"@apollosproject/ui-kit@^2.25.1-canary.14":
+  version "2.25.1-canary.14"
+  resolved "https://registry.yarnpkg.com/@apollosproject/ui-kit/-/ui-kit-2.25.1-canary.14.tgz#38f2d367db4e483c9f4fda5dce0b8259a5e61994"
+  integrity sha512-WRluKHAY6POLjr4BnIGL21B/umZSttxCEXKRjh8Ost0JUfpyfSm7Y8ZjdSZeKRG5qjRmgYt86TCjg3s0UCpPrA==
   dependencies:
     "@react-native-community/blur" "^3.6.0"
     color "^3.1.0"
