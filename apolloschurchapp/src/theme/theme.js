@@ -85,10 +85,31 @@ const overlays = ({ colors: themeColors }) => ({
  * }
  * ```
  */
-// const overrides = {};
+// This is not right...yet.
+const overrides = {
+  // 'ui-onboarding.Features.BackgroundComponent.FullScreenImage': {
+  //   source: '../onboarding/Welcome_2x.png',
+  // },
+  'ui-onboarding.Features': {
+    description:
+      "We'd like to help personalize your profile to make the most of your online experience.",
+    // BackgroundComponent: {
+    //   source: '../onboarding/Welcome_2x.png',
+    // },
+  },
+  'ui-onboarding.LocationFinder': {
+    description:
+      "We'll use your location to connect you with your nearby campus and community.",
+  },
+  'ui-onboarding.AskNotifications': {
+    description:
+      "We'll let you know when important things are happening and keep you in the loop.",
+  },
+};
 
 export default {
   colors,
   overlays,
+  overrides,
   typography,
 };
