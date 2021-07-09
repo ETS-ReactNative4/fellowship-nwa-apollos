@@ -39,6 +39,7 @@ import {
 
 import * as Theme from './theme';
 import * as ActionAlgorithm from './ActionAlgorithms';
+import * as Vimeo from './Vimeo';
 import * as ContentItem from './ContentItem';
 
 // This module is used to attach Rock User updating to the OneSignal module.
@@ -79,6 +80,7 @@ const data = {
   Event,
   Cache,
   PrayerRequest,
+  Vimeo,
   Persona,
   Person,
   BinaryFiles,

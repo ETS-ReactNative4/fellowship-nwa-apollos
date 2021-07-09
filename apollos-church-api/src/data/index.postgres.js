@@ -49,6 +49,7 @@ import {
 
 import * as Theme from './theme';
 import * as ActionAlgorithm from './ActionAlgorithms';
+import * as Vimeo from './Vimeo';
 import * as ContentItem from './ContentItem';
 
 // This modules ties together certain updates so they occurs in both Rock and Postgres.
@@ -91,6 +92,7 @@ const data = {
   UserFlag,
   Follow,
   PostgresCampus,
+  Vimeo,
   Persona,
   Notification,
   NotificationPreference,
