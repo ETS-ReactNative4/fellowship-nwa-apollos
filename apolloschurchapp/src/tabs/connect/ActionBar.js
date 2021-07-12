@@ -6,27 +6,42 @@ import { RockAuthedWebBrowser } from '@apollosproject/ui-connected';
 const Toolbar = () => {
   const navigation = useNavigation();
   return (
-    <RockAuthedWebBrowser>
-      {(openUrl) => (
-        <ActionBar>
-          <ActionBarItem
-            onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
-            icon="check"
-            label="Check-in"
-          />
-          <ActionBarItem
-            onPress={() => openUrl('https://www.fellowshipnwa.org/give')}
-            icon="download"
-            label="Give"
-          />
-          <ActionBarItem
-            onPress={() => openUrl('https://www.fellowshipnwa.org/serve')}
-            icon="groups"
-            label="Volunteer"
-          />
-        </ActionBar>
-      )}
-    </RockAuthedWebBrowser>
+    <>
+      <RockAuthedWebBrowser>
+        {(openUrl) => (
+          <ActionBar>
+            <ActionBarItem
+              onPress={() =>
+                openUrl('https://www.fellowshipnwa.org/SmallGroupForm')
+              }
+              icon="users-three"
+              label="Join a Group"
+            />
+          </ActionBar>
+        )}
+      </RockAuthedWebBrowser>
+      <RockAuthedWebBrowser>
+        {(openUrl) => (
+          <ActionBar>
+            <ActionBarItem
+              onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
+              icon="check"
+              label="Check-in"
+            />
+            <ActionBarItem
+              onPress={() => openUrl('https://www.fellowshipnwa.org/give')}
+              icon="heart-straight"
+              label="Give"
+            />
+            <ActionBarItem
+              onPress={() => openUrl('https://www.fellowshipnwa.org/serve')}
+              icon="hand-waving"
+              label="Serve"
+            />
+          </ActionBar>
+        )}
+      </RockAuthedWebBrowser>
+    </>
   );
 };
 

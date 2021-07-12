@@ -23,7 +23,7 @@ const HeaderLogo = withTheme(({ theme }) => ({
 }))(Icon);
 
 const SearchIcon = withTheme(({ theme: { colors, sizing: { baseUnit } } }) => ({
-  name: 'search',
+  name: 'magnifying-glass',
   size: baseUnit * 2,
   fill: colors.primary,
 }))(Icon);
