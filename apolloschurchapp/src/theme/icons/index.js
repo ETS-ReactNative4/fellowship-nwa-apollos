@@ -1,5 +1,5 @@
 export BrandIcon from './BrandIcon';
 export House from './House';
-export Video from './Video';
+export Play from './Play';
 export Calendar from './Calendar';
-export Profile from './Profile';
+export User from './User';

@@ -104,7 +104,7 @@ const TabNavigator = () => {
       <Screen
         name="Watch"
         component={WatchTab}
-        options={{ tabBarIcon: tabBarIcon('video') }}
+        options={{ tabBarIcon: tabBarIcon('play') }}
       />
       <Screen
         name="Events"
@@ -114,7 +114,7 @@ const TabNavigator = () => {
       <Screen
         name="Connect"
         component={Connect}
-        options={{ tabBarIcon: tabBarIcon('profile') }}
+        options={{ tabBarIcon: tabBarIcon('user') }}
       />
     </Navigator>
   );
