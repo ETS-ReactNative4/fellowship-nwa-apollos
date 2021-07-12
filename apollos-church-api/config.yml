@@ -57,8 +57,12 @@ BIBLE_API:
     KJV: 'de4e12af7f28f599-02'
 CLOUDINARY:
   URL: ${CLOUDINARY_URL}
-# SUGGESTED_FOLLOWS:
-# TODO: find out what these should actually be.
+SUGGESTED_FOLLOWS:
+# TODO: find out what these should actually be, and why these two don't work.
+  -
+    id: '713c6013-cd5d-40ea-af96-dec32e271981' # Justin Kraning
+  -
+    id: '69e19717-1422-4f21-a81e-fe9a47ac5626' # David Jensen
 
 # This key holds various properties that allow our GraphQL server to map to your Rock Instance
 ROCK_MAPPINGS:
