@@ -190,6 +190,22 @@ TABS:
     # - title: Community
     #   algorithms: [UPCOMING_EVENTS]
     #   type: HorizontalCardList
+    - type: ActionTable
+      title: Events by ministry
+      subtitle: Find your next event
+      actions:
+        [
+          {
+            title: Children,
+            action: OPEN_URL,
+            relatedNode: { __typename: Url, url: 'fellowshipnwa://app-link/nav/MinistryEventList?ministry=Children' },
+          },
+          {
+            title: Students,
+            action: OPEN_URL,
+            relatedNode: { __typename: Url, url: 'fellowshipnwa://app-link/nav/MinistryEventList?ministry=Students' },
+          },
+        ]
 
   WATCH:
     - algorithms:

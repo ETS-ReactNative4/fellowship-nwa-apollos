@@ -31,6 +31,7 @@ import {
 import Providers from './Providers';
 import ContentSingle from './content-single';
 import Event from './event';
+import MinistryEventList from './ui/MinistryEventList';
 import Tabs from './tabs';
 import customTheme, { customIcons } from './theme';
 
@@ -116,11 +117,15 @@ const App = () => {
                   stackPresentation: 'modal',
                 })}
               />
-
               <Screen
                 name="Event"
                 component={Event}
                 options={{ title: 'Event' }}
+              />
+              <Screen
+                name="MinistryEventList"
+                component={MinistryEventList}
+                options={{ title: 'MinistryEventList' }}
               />
               <Screen
                 name="Auth"
