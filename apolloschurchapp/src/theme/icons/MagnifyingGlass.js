@@ -13,8 +13,8 @@ const Icon = makeIcon(({ size = 32, fill } = {}) => (
     viewBox="0 0 320 320"
   >
     <Circle
-      cx="116"
-      cy="116"
+      cx="140"
+      cy="140"
       r="84"
       fill="none"
       stroke={fill}
@@ -23,10 +23,10 @@ const Icon = makeIcon(({ size = 32, fill } = {}) => (
       strokeWidth="20"
     />
     <Line
-      x1="175.39356"
-      y1="175.40039"
-      x2="223.99414"
-      y2="224.00098"
+      x1="199.39356"
+      y1="199.40039"
+      x2="247.99414"
+      y2="248.00098"
       fill="none"
       stroke={fill}
       strokeLinecap="round"
