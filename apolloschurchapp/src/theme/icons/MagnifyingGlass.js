@@ -10,7 +10,7 @@ const Icon = makeIcon(({ size = 32, fill } = {}) => (
     width={size}
     height={size}
     fill={fill}
-    viewBox="0 0 256 256"
+    viewBox="0 0 320 320"
   >
     <Circle
       cx="116"
@@ -20,7 +20,7 @@ const Icon = makeIcon(({ size = 32, fill } = {}) => (
       stroke={fill}
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth="16"
+      strokeWidth="20"
     />
     <Line
       x1="175.39356"
@@ -31,7 +31,7 @@ const Icon = makeIcon(({ size = 32, fill } = {}) => (
       stroke={fill}
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth="16"
+      strokeWidth="20"
     />
   </Svg>
 ));
