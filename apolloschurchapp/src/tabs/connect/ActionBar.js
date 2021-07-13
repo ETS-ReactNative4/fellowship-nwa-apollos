@@ -25,7 +25,7 @@ const Toolbar = () => {
           <ActionBar>
             <ActionBarItem
               onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
-              icon="check"
+              icon="phosphor-check"
               label="Check-in"
             />
             <ActionBarItem
