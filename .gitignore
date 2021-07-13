@@ -14,7 +14,7 @@ yalc.lock
 yarn-error.log
 lerna-debug.log
 
-# certificate files
+# private certificate files
 .cer
 .p12
 .pem
