@@ -6,6 +6,7 @@ export HeartStraight from './HeartStraight';
 export HandWaving from './HandWaving';
 export House from './House';
 export MagnifyingGlass from './MagnifyingGlass';
+export PhosphorCheck from './PhosphorCheck';
 export Play from './Play';
 export User from './User';
 export UsersThree from './UsersThree';
