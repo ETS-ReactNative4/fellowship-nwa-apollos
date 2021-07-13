@@ -15,7 +15,7 @@ yarn-error.log
 lerna-debug.log
 
 # certificate files
-.certificates
+.cer
 .p12
 .pem
 .certSigningRequest
