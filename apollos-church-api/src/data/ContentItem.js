@@ -51,6 +51,24 @@ class dataSource extends ContentItem.dataSource {
     ).sort(this.DEFAULT_SORT());
   };
 
+  getFeatures = async (item) => {
+    const features = await super.getFeatures(item);
+    const { Feature } = this.context.dataSources;
+
+    // scripture ref
+    const reference = item.attributeValues.bookoftheBible?.value;
+    if (reference) {
+      features.push(
+        Feature.createScriptureFeature({
+          reference,
+          id: `${item.id}-${reference}`,
+        })
+      );
+    }
+
+    return features;
+  };
+
   // createHTMLContent = (content) =>
   //   sanitizeHtml(content || '', {
   //     allowedTags: false,
