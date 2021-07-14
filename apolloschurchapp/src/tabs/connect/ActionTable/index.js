@@ -39,6 +39,15 @@ const ActionTable = () => {
           </RowHeader>
           <TableView>
             <Touchable
+              onPress={() => openUrl('https://www.fellowshipnwa.org/serve')}
+            >
+              <Cell>
+                <CellText>Serve</CellText>
+                <CellIcon name="arrow-next" />
+              </Cell>
+            </Touchable>
+            <Divider />
+            <Touchable
               onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
             >
               <Cell>
