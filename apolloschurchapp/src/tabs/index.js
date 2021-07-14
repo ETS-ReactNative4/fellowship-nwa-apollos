@@ -28,6 +28,41 @@ const SearchIcon = withTheme(({ theme: { colors, sizing: { baseUnit } } }) => ({
   fill: colors.primary,
 }))(Icon);
 
+// Home Tab Header Icon
+const GrowTogetherIcon = withTheme(
+  ({
+    theme: {
+      colors,
+      sizing: { baseUnit },
+    },
+  }) => ({
+    name: 'grow-together',
+    size: baseUnit * 2,
+    fill: colors.primary,
+  })
+)(Icon);
+
+// Watch & Listen Tab Header Icon
+const WatchListenIcon = withTheme(
+  ({
+    theme: {
+      colors,
+      sizing: { baseUnit },
+    },
+  }) => ({
+    name: 'watch-listen',
+    size: baseUnit * 2,
+    fill: colors.primary,
+  })
+)(Icon);
+
+// Events Tab Header Icon
+const EventsIcon = withTheme(({ theme: { colors, sizing: { baseUnit } } }) => ({
+  name: 'events',
+  size: baseUnit * 2,
+  fill: colors.primary,
+}))(Icon);
+
 const SearchButton = ({ onPress }) => (
   <Touchable onPress={onPress}>
     <SearchIcon />
@@ -44,34 +79,36 @@ const HeaderRight = () => {
   return <SearchButton onPress={() => navigation.navigate('Search')} />;
 };
 
-const headerCenter = (title) => () => (
-  <FlexedView>
-    <H4>{title}</H4>
-  </FlexedView>
-);
-
-const screenOptions = (title) => ({
-  headerLeft: HeaderLeft,
-  headerRight: HeaderRight,
-  headerCenter: headerCenter(title),
-  headerLargeTitle: false,
-});
-
 // we nest stack inside of tabs so we can use all the fancy native header features
 const HomeTab = createFeatureFeedTab({
-  options: screenOptions('Fellowship'),
+  options: {
+    headerLeft: HeaderLeft,
+    headerRight: HeaderRight,
+    headerCenter: GrowTogetherIcon,
+    headerLargeTitle: false,
+  },
   tabName: 'Home',
   feedName: 'HOME',
 });
 
 const EventsTab = createFeatureFeedTab({
-  options: screenOptions('Events'),
+  options: {
+    headerLeft: HeaderLeft,
+    headerRight: HeaderRight,
+    headerCenter: EventsIcon,
+    headerLargeTitle: false,
+  },
   tabName: 'Events',
   feedName: 'READ',
 });
 
 const WatchTab = createFeatureFeedTab({
-  options: screenOptions('Watch & Listen'),
+  options: {
+    headerLeft: HeaderLeft,
+    headerRight: HeaderRight,
+    headerCenter: WatchListenIcon,
+    headerLargeTitle: false,
+  },
   tabName: 'Watch',
   feedName: 'WATCH',
 });
