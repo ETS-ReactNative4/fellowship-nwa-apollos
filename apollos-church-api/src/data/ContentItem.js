@@ -1,5 +1,5 @@
 import { ContentItem } from '@apollosproject/data-connector-rock';
-// import ApollosConfig from '@apollosproject/config';
+import ApollosConfig from '@apollosproject/config';
 // import sanitizeHtml from 'sanitize-html';
 
 const { schema, resolver } = ContentItem;
@@ -53,7 +53,7 @@ class dataSource extends ContentItem.dataSource {
 
   getFeatures = async (item) => {
     const features = await super.getFeatures(item);
-    const { Feature } = this.context.dataSources;
+    const { Feature, Matrix, BinaryFiles } = this.context.dataSources;
 
     // scripture ref
     const reference = item.attributeValues.bookoftheBible?.value;
@@ -61,10 +61,41 @@ class dataSource extends ContentItem.dataSource {
       features.push(
         Feature.createScriptureFeature({
           reference,
-          id: `${item.id}-${reference}`,
+          id: `${item.attributeValues.bookoftheBible.id}`,
         })
       );
     }
+
+    // relatedFilesorLinks
+    const resources = await Matrix.getItemsFromGuid(
+      item.attributeValues.relatedFilesorLinks?.value
+    );
+    if (!resources.length) return features;
+    const actions = await Promise.all(
+      resources.map(
+        async ({ attributeValues: { linkName, linkUrl, file } }) => {
+          let url = '';
+          if (linkUrl.value) {
+            url = ApollosConfig.ROCK.URL + linkUrl.value;
+          } else if (file.value) {
+            const blob = await BinaryFiles.request()
+              .filter(`Guid eq guid'${file.value}'`)
+              .first();
+            url = blob.url;
+          }
+          return {
+            title: linkName.value,
+            relatedNode: { __typename: 'Url', url },
+          };
+        }
+      )
+    );
+    features.push(
+      Feature.createActionTableFeature({
+        title: 'Resources',
+        actions,
+      })
+    );
 
     return features;
   };

@@ -53,6 +53,7 @@ import * as Vimeo from './Vimeo';
 import * as Youtube from './Youtube';
 import * as ContentItem from './ContentItem';
 import * as Event from './Event';
+import * as Matrix from './Matrix';
 
 // This modules ties together certain updates so they occurs in both Rock and Postgres.
 // Will be eliminated in the future through an enhancement to the Shovel
@@ -101,6 +102,7 @@ const data = {
   NotificationPreference,
   OneSignal,
   Person, // An extension of Postgres person. Will be eliminated in the near future so you can use just postgres/Person.
+  Matrix,
 };
 
 const {

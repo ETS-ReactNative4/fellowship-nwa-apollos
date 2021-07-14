@@ -43,6 +43,7 @@ import * as Vimeo from './Vimeo';
 import * as Youtube from './Youtube';
 import * as ContentItem from './ContentItem';
 import * as Event from './Event';
+import * as Matrix from './Matrix';
 
 // This module is used to attach Rock User updating to the OneSignal module.
 // This module includes a Resolver that overides a resolver defined in `OneSignal`
@@ -87,6 +88,7 @@ const data = {
   Persona,
   Person,
   BinaryFiles,
+  Matrix,
   NoPostgres,
 };
 
