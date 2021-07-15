@@ -1,8 +1,18 @@
 import { ContentItem } from '@apollosproject/data-connector-rock';
 import ApollosConfig from '@apollosproject/config';
-// import sanitizeHtml from 'sanitize-html';
 
-const { schema, resolver } = ContentItem;
+const { schema } = ContentItem;
+
+const resolver = {
+  ...ContentItem.resolver,
+  WeekendContentItem: {
+    ...ContentItem.resolver.WeekendContentItem,
+    htmlContent: (item, _, { dataSources }) =>
+      `${dataSources.ContentItem.createHtmlHeader(
+        item
+      )}${dataSources.ContentItem.createHTMLContent(item.summary)}`,
+  },
+};
 
 class dataSource extends ContentItem.dataSource {
   superGetCursorByChildContentItemId = this.getCursorByChildContentItemId;
@@ -100,22 +110,20 @@ class dataSource extends ContentItem.dataSource {
     return features;
   };
 
-  // createHTMLContent = (content) =>
-  //   sanitizeHtml(content || '', {
-  //     allowedTags: false,
-  //     allowedAttributes: false,
-  //     transformTags: {
-  //       img: (tagName, { src }) => ({
-  //         tagName,
-  //         attribs: {
-  //           // adds Rock URL in the case of local image references in the CMS
-  //           src: src.startsWith('http')
-  //             ? src
-  //             : `${ApollosConfig.ROCK.URL || ''}${src}`,
-  //         },
-  //       }),
-  //     },
-  //   });
+  createHtmlHeader = (item) => {
+    let header = '';
+    if (item.attributeValues.vimeoId?.value) {
+      header = `${header}<a href="https://vimeo.com/${
+        item.attributeValues.vimeoId?.value
+      }">Play Sermon Video</a>`;
+    } else if (item.attributeValues.youtubeId?.value) {
+      header = `${header}<a href="https://www.youtube.com/watch?v=${
+        item.attributeValues.youtubeId?.value
+      }">Play Sermon Video</a>`;
+    }
+
+    return header;
+  };
 }
 
 export { schema, resolver, dataSource };

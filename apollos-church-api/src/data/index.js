@@ -39,8 +39,6 @@ import {
 
 import * as Theme from './theme';
 import * as ActionAlgorithm from './ActionAlgorithms';
-import * as Vimeo from './Vimeo';
-import * as Youtube from './Youtube';
 import * as ContentItem from './ContentItem';
 import * as Event from './Event';
 import * as Matrix from './Matrix';
@@ -83,8 +81,6 @@ const data = {
   Event,
   Cache,
   PrayerRequest,
-  Vimeo,
-  Youtube,
   Persona,
   Person,
   BinaryFiles,
