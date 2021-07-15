@@ -7,8 +7,6 @@ import {
   withTheme,
   Icon,
   Touchable,
-  H4,
-  FlexedView,
 } from '@apollosproject/ui-kit';
 import { useApolloClient } from '@apollo/client';
 import { createFeatureFeedTab } from '@apollosproject/ui-connected';
@@ -115,6 +113,13 @@ const WatchTab = createFeatureFeedTab({
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
+const ThemedTabNavigator = withTheme(({ theme }) => ({
+  tabBarOptions: {
+    showLabel: false,
+    activeTintColor: theme.type === 'dark' ? '#FFFFFF' : '#000000',
+  },
+}))(Navigator);
+
 const TabNavigator = () => {
   const client = useApolloClient();
   // this is only used by the tab loaded first
@@ -132,12 +137,7 @@ const TabNavigator = () => {
   );
 
   return (
-    <Navigator
-      tabBarOptions={{
-        showLabel: false,
-        activeTintColor: '#000000',
-      }}
-    >
+    <ThemedTabNavigator>
       <Screen
         name="Home"
         component={HomeTab}
@@ -160,7 +160,7 @@ const TabNavigator = () => {
         component={Connect}
         options={{ tabBarIcon: tabBarIcon('user') }}
       />
-    </Navigator>
+    </ThemedTabNavigator>
   );
 };
 
