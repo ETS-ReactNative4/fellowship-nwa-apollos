@@ -10,7 +10,9 @@ const resolver = {
     htmlContent: (item, _, { dataSources }) =>
       `${dataSources.ContentItem.createHtmlHeader(
         item
-      )}${dataSources.ContentItem.createHTMLContent(item.summary)}`,
+      )}${dataSources.ContentItem.createHTMLContent(
+        item.attributeValues.summary?.value
+      )}`,
   },
 };
 
@@ -121,6 +123,8 @@ class dataSource extends ContentItem.dataSource {
         item.attributeValues.youtubeId?.value
       }">Play Sermon Video</a>`;
     }
+
+    if (header !== '') header = `<p>${header}</p>`;
 
     return header;
   };
