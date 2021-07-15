@@ -149,7 +149,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.differential.apollos"
+        applicationId "com.fellowshipnwa.churchapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
