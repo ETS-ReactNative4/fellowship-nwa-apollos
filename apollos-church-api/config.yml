@@ -224,16 +224,6 @@ TABS:
           __typename: ContentChannel
           id: 10
 
-    # - title: Jump into
-    #   subtitle: Knowing God By Name (TODO) # Missing Content Channel in Rock
-    #   algorithms:
-    #     - type: CONTENT_FEED
-    #       arguments:
-    #         limit: 6
-    #         channelIds:
-    #           - 19
-    #   type: HorizontalCardList
-
     - subtitle: All Series # Missing Content Channel in Rock
       algorithms:
         - type: CONTENT_FEED
@@ -242,87 +232,13 @@ TABS:
             channelIds:
               - 12
       type: HorizontalCardList
-
-    # - title: Listen
-    #   subtitle: Podcasts (TODO) # Need custom algo reading from XML
-    #   algorithms:
-    #     - type: CONTENT_FEED
-    #       arguments:
-    #         limit: 6
-    #         channelIds:
-    #           - 19
-    #   type: HorizontalCardList
-
-    # - title: Listen
-    #   subtitle: Worship (TODO) # Need custom algo reading from XML
-    #   algorithms:
-    #     - type: CONTENT_FEED
-    #       arguments:
-    #         limit: 6
-    #         channelIds:
-    #           - 19
-    #   type: HorizontalCardList
-
-    # - algorithms:
-    #     - type: LATEST_SERIES_CHILDREN
-    #       arguments:
-    #         channelId: 4
-    #   type: HeroList
-    #   title: Catch up
-    #   subtitle: Latest Series
-    # - algorithms:
-    #     - type: CONTENT_FEED
-    #       arguments:
-    #         channelIds:
-    #           - 4
-    #   type: VerticalCardList
-    #   subtitle: All series
-    # - algorithms:
-    #     - type: CONTENT_FEED
-    #       arguments:
-    #         channelIds:
-    #           - 3
-    #         limit: 3
-    #   type: HorizontalCardList
-    #   subtitle: Sermons
-    # - algorithms:
-    #     - type: CONTENT_FEED
-    #       arguments:
-    #         channelIds:
-    #           - 5
-    #         limit: 3
-    #   type: HorizontalCardList
-    #   subtitle: Podcasts
-    #   primaryAction:
-    #     action: OPEN_CHANNEL
-    #     title: 'Read More'
-    #     relatedNode:
-    #       __typename: ContentChannel
-    #       id: 5
-    #       name: Podcasts
-    # - algorithms:
-    #     - type: CONTENT_FEED
-    #       arguments:
-    #         channelIds:
-    #           - 6
-    #         limit: 3
-    #   type: HorizontalCardList
-    #   title: Videos
-    #   primaryAction:
-    #     action: OPEN_CHANNEL
-    #     title: 'Read More'
-    #     relatedNode:
-    #       __typename: ContentChannel
-    #       id: 6
-    #       name: Videos
-    # - algorithms:
-    #     - type: CONTENT_FEED
-    #       arguments:
-    #         channelIds:
-    #           - 8
-    #         limit: 3
-    #   type: HorizontalCardList
-    #   subtitle: Something Else
+      primaryAction:
+        action: OPEN_CHANNEL
+        title: 'View All'
+        relatedNode:
+          __typename: ContentChannel
+          id: 12
+          name: All Series
 
   PRAY: # NOT USED
     - algorithms: [DAILY_PRAYER]
