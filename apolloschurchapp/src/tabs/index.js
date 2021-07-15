@@ -132,11 +132,19 @@ const TabNavigator = () => {
   );
 
   return (
-    <Navigator tabBarOptions={{ showLabel: false }}>
+    <Navigator
+      tabBarOptions={{
+        showLabel: false,
+        activeTintColor: '#000000',
+      }}
+    >
       <Screen
         name="Home"
         component={HomeTab}
-        options={{ tabBarIcon: tabBarIcon('house') }}
+        options={{
+          tabBarIcon: tabBarIcon('house'),
+          // tabBarLabel: 'home!!',
+        }}
       />
       <Screen
         name="Watch"
