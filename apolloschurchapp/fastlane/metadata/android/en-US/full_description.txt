@@ -1,1 +1,7 @@
-Template app for the Apollos Project
+Welcome to the official Fellowship NWA app!
+
+We hope this app provides you all with easy access to all of our resources. We have sermons, event information, daily devotionals and so much more. Feel free to recommend this app to any of your friends who are looking for a church to connect with.
+
+For more information about Fellowship NWA please visit: http://www.fellowshipnwa.org/welcome-students-sunday
+
+The Fellowship NWA App was created with the Apollos Project.
