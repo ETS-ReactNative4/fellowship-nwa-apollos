@@ -3,6 +3,7 @@ export ArrowsInSimple from './ArrowsInSimple';
 export BrandIcon from './BrandIcon';
 export Calendar from './Calendar';
 export Events from './Events';
+export Fellowship from './Fellowship';
 export GrowTogether from './GrowTogether';
 export HeartStraight from './HeartStraight';
 export HandWaving from './HandWaving';

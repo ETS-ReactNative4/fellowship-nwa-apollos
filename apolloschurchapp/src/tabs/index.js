@@ -27,14 +27,14 @@ const SearchIcon = withTheme(({ theme: { colors, sizing: { baseUnit } } }) => ({
 }))(Icon);
 
 // Home Tab Header Icon
-const GrowTogetherIcon = withTheme(
+const FellowshipIcon = withTheme(
   ({
     theme: {
       colors,
       sizing: { baseUnit },
     },
   }) => ({
-    name: 'grow-together',
+    name: 'fellowship',
     size: baseUnit * 2,
     fill: colors.primary,
   })
@@ -82,7 +82,7 @@ const HomeTab = createFeatureFeedTab({
   options: {
     headerLeft: HeaderLeft,
     headerRight: HeaderRight,
-    headerCenter: GrowTogetherIcon,
+    headerCenter: FellowshipIcon,
     headerLargeTitle: false,
   },
   tabName: 'Home',
