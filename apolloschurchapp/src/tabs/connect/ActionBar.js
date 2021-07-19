@@ -7,9 +7,11 @@ const Toolbar = () => (
     {(openUrl) => (
       <ActionBar>
         <ActionBarItem
-          onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
-          icon="phosphor-check"
-          label="Check-in"
+          onPress={() =>
+            openUrl('https://www.fellowshipnwa.org/SmallGroupForm')
+          }
+          icon="users-three"
+          label="Join a Group"
         />
         <ActionBarItem
           onPress={() => openUrl('https://www.fellowshipnwa.org/give')}
@@ -17,11 +19,9 @@ const Toolbar = () => (
           label="Give"
         />
         <ActionBarItem
-          onPress={() =>
-            openUrl('https://www.fellowshipnwa.org/SmallGroupForm')
-          }
-          icon="users-three"
-          label="Join a Group"
+          onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
+          icon="hand-waving"
+          label="Serve"
         />
       </ActionBar>
     )}
