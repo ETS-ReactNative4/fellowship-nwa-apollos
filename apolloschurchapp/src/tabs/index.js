@@ -14,11 +14,11 @@ import { checkOnboardingStatusAndNavigate } from '@apollosproject/ui-onboarding'
 import Connect from './connect';
 import tabBarIcon from './tabBarIcon';
 
-const HeaderLogo = withTheme(({ theme }) => ({
-  fill: theme.colors.primary,
-  size: 24,
-  name: 'brand-icon',
-}))(Icon);
+// const HeaderLogo = withTheme(({ theme }) => ({
+//   fill: theme.colors.primary,
+//   size: 24,
+//   name: 'brand-icon',
+// }))(Icon);
 
 const SearchIcon = withTheme(({ theme: { colors, sizing: { baseUnit } } }) => ({
   name: 'magnifying-glass',
@@ -71,18 +71,21 @@ SearchButton.propTypes = {
   onPress: PropTypes.func,
 };
 
-const HeaderLeft = () => <HeaderLogo />;
+// const HeaderLeft = () => <HeaderLogo />;
 const HeaderRight = () => {
   const navigation = useNavigation();
   return <SearchButton onPress={() => navigation.navigate('Search')} />;
 };
 
+// Blank HeaderCenter
+const BlankHeaderCenter = () => null;
+
 // we nest stack inside of tabs so we can use all the fancy native header features
 const HomeTab = createFeatureFeedTab({
   options: {
-    headerLeft: HeaderLeft,
+    headerLeft: FellowshipIcon,
     headerRight: HeaderRight,
-    headerCenter: FellowshipIcon,
+    headerCenter: BlankHeaderCenter,
     headerLargeTitle: false,
   },
   tabName: 'Home',
@@ -91,9 +94,9 @@ const HomeTab = createFeatureFeedTab({
 
 const EventsTab = createFeatureFeedTab({
   options: {
-    headerLeft: HeaderLeft,
+    headerLeft: EventsIcon,
     headerRight: HeaderRight,
-    headerCenter: EventsIcon,
+    headerCenter: BlankHeaderCenter,
     headerLargeTitle: false,
   },
   tabName: 'Events',
@@ -102,9 +105,9 @@ const EventsTab = createFeatureFeedTab({
 
 const WatchTab = createFeatureFeedTab({
   options: {
-    headerLeft: HeaderLeft,
+    headerLeft: WatchListenIcon,
     headerRight: HeaderRight,
-    headerCenter: WatchListenIcon,
+    headerCenter: BlankHeaderCenter,
     headerLargeTitle: false,
   },
   tabName: 'Watch',
