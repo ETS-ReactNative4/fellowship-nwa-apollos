@@ -11,7 +11,7 @@ import { Image } from 'react-native';
  */
 const lightColors = {
   primary: '#27272E', // 27272E',
-  secondary: '#707F75',
+  secondary: '#4E9AF4',
   tertiary: '#AFAFAF',
 
   screen: '#F8F8FB',
