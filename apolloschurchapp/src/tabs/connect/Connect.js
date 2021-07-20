@@ -46,7 +46,7 @@ class Connect extends PureComponent {
                   <CurrentCampus
                     cardButtonText={'Select a Campus'}
                     cardTitle={'No location'}
-                    headerActionText={'Select a Campus'}
+                    headerActionText={'Select'}
                     sectionTitle={'Your Campus'}
                     isLoading={userCampusLoading}
                   />
