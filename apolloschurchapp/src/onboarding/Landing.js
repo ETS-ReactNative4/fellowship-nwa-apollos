@@ -3,7 +3,7 @@ import { Image } from 'react-native';
 
 import { H4, PaddedView, styled } from '@apollosproject/ui-kit';
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import { Slide } from '@apollosproject/ui-onboarding';
 
 const HeaderImage = styled({
@@ -31,9 +31,11 @@ const Subtitle = styled({ textAlign: 'center' })(H4);
 
 const Landing = () => {
   const navigation = useNavigation();
+  const source = useTheme();
   const onPressPrimary = useCallback(() => navigation.navigate('Auth'), [
     navigation.navigate,
   ]);
+
   return (
     <Slide
       onPressPrimary={onPressPrimary}
@@ -42,7 +44,13 @@ const Landing = () => {
     >
       <HeaderImage source={require('./Intro.png')} />
       <Content>
-        <GrowImage source={require('./GrowTogether.png')} />
+        <GrowImage
+          source={
+            source.dark
+              ? require('./GrowTogetherDark.png')
+              : require('./GrowTogetherLight.png')
+          }
+        />
         <Subtitle>
           We&apos;re not just a building you go to, but a family to belong to.
         </Subtitle>
