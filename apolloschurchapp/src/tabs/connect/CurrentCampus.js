@@ -18,7 +18,6 @@ import {
 
 import { useNavigation } from '@react-navigation/core';
 import { View } from 'react-native';
-// import Label from '../../ui/LabelText';
 
 const StyledCard = withTheme(({ theme }) => ({
   borderRadius: theme.sizing.baseBorderRadius,
@@ -50,14 +49,14 @@ const Content = styled(({ theme }) => ({
 
 const StyledButtonLink = styled(({ theme }) => ({
   alignSelf: 'center',
-  color: theme.colors.primary,
+  color: theme.colors.secondary,
 }))(ButtonLink);
 
 const StyledCardTitle = styled(({ theme }) => ({
   color: theme.colors.text.primary,
 }))(H3);
 
-const Label = styled(({ theme }) => ({ color: theme.colors.darkPrimary }))(H4);
+const Label = styled(({ theme }) => ({ color: theme.colors.secondary }))(H4);
 
 const CurrentCampus = withIsLoading(
   ({

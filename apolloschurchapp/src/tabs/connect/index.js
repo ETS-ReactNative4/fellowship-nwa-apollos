@@ -20,11 +20,6 @@ const ConnectNavigator = (props) => (
       name="Connect"
       options={{ headerShown: false }}
     />
-    {/* <Screen
-      component={TestingControlPanel}
-      name="TestingControlPanel"
-      options={{ headerTitle: 'Testing' }}
-    /> */}
     <Screen
       component={NotificationSettingsConnected}
       name="Notifications"
