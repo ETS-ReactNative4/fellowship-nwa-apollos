@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Svg, { G, Path } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
 import { makeIcon } from '@apollosproject/ui-kit';
 
