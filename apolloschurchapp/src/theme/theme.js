@@ -13,6 +13,7 @@ const lightColors = {
   primary: '#27272E', // 27272E',
   secondary: '#4E9AF4',
   tertiary: '#AFAFAF',
+  quaternary: '#808080',
 
   screen: '#F8F8FB',
 };
