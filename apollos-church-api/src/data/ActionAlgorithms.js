@@ -25,47 +25,75 @@ class dataSource extends ActionAlgorithm.dataSource {
   //   }));
   // }
 
-  contentFeedAlgorithm = async ({
-    channelIds = [],
-    limit = 20,
-    skip = 0,
-  } = {}) => {
+  async contentFeedAlgorithm({ channelIds = [], limit = 20, skip = 0 } = {}) {
     const { ContentItem, Auth, Campus } = this.context.dataSources;
 
     // custom, filter everything by campus
-    const { id } = Auth.getCurrentPerson();
-    const { id: campusId } = Campus.getForPerson({ id });
-    // this is gonna give me something like Fellowship Rogers
-    //
-    // TODO
-    // Congregation attribute value is 8701, returns values like 'fellowship-rogers'
-    // I need to figure out how to the link them
-    // then we could do AttributeValues.filter(8701 and value) and map the EntityId to get content items
-    //
-    // Campuses attribute
-    const campusItems2 = await this.request(
-      `Apollos/ContentChannelItemsByAttributeValue?attributeValues=${campusId}&attributeKey=CampusId`
-    )
-      .byContentChannelIds(channelIds)
+    const person = await Auth.getCurrentPerson();
+    const { name = '', guid } = await Campus.getForPerson({ id: person.id });
+
+    // 10 - Sermons
+    // Congregation attribute returns the lowercase, hyphenated campus name
+    const congregationChannels = channelIds.filter((id) => [10].includes(id));
+    const congregationItems = congregationChannels.length
+      ? await ContentItem.request(
+          `Apollos/ContentChannelItemsByAttributeValue?attributeValues=${name
+            .toLowerCase()
+            .replace(' ', '-')}&attributeKey=Congregation`
+        )
+          .filterOneOf(
+            congregationChannels.map((id) => `ContentChannelId eq ${id}`)
+          )
+          .andFilter(ContentItem.LIVE_CONTENT())
+          .cache({ ttl: 60 })
+          .orderBy('StartDateTime', 'desc')
+          .top(limit)
+          .skip(skip)
+          .get()
+      : [];
+
+    // 19 - News Highlights
+    // Campus attribute returns a string list of campus guids
+    const campusChannels = channelIds.filter((id) => [19].includes(id));
+    const attributeValues = await this.request('AttributeValues')
+      .filter(`AttributeId eq 10878 and substringof('${guid}', Value)`)
       .top(limit)
       .skip(skip)
       .get();
+    const campusItems = campusChannels.length
+      ? await Promise.all(
+          attributeValues.map(({ entityId }) =>
+            ContentItem.request()
+              .filterOneOf(
+                campusChannels.map((id) => `ContentChannelId eq ${id}`)
+              )
+              .andFilter(`Id eq ${entityId}`)
+              .first()
+          )
+        )
+      : [];
 
-    // const items = await ContentItem.byContentChannelIds(channelIds)
-    // .top(limit)
-    // .skip(skip)
-    // .get();
+    // generic items with no campus selector
+    const noCampusChannels = channelIds.filter((id) => ![10, 19].includes(id));
+    const noCampusItems = noCampusChannels.length
+      ? await ContentItem.byContentChannelIds(noCampusChannels)
+          .top(limit)
+          .skip(skip)
+          .get()
+      : [];
+
+    const items = noCampusItems.concat(congregationItems, campusItems);
 
     return items.map((item, i) => ({
       id: `${item.id}${i}`,
       title: item.title,
-      subtitle: get(item, 'contentChannel.name'),
+      subtitle: item.contentChannel?.name,
       relatedNode: { ...item, __type: ContentItem.resolveType(item) },
       image: ContentItem.getCoverImage(item),
       action: 'READ_CONTENT',
       summary: ContentItem.createSummary(item),
     }));
-  };
+  }
 }
 
 export { dataSource };
