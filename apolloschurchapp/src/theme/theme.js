@@ -105,7 +105,7 @@ const overrides = {
   },
   'ui-onboarding.Features': {
     description:
-      "We'd like to help personalize your profile to make the most of your online experience.",
+      "We'd like to help you personalize your profile to make the most of your Fellowship App experience.",
     // eslint-disable-next-line react/display-name
     BackgroundComponent: () => (
       <Image
@@ -116,8 +116,9 @@ const overrides = {
     ),
   },
   'ui-onboarding.LocationFinder': {
+    slideTitle: 'Select your congregation',
     description:
-      "We'll use your location to connect you with your nearby campus and community.",
+      'We have multiple congregations that meet at three locations across Northwest Arkansas.',
     // eslint-disable-next-line react/display-name
     BackgroundComponent: () => (
       <Image
@@ -128,8 +129,9 @@ const overrides = {
     ),
   },
   'ui-onboarding.AskNotifications': {
+    slideTitle: "Let's stay connected",
     description:
-      "We'll let you know when important things are happening and keep you in the loop.",
+      'We’ll let you know when important things are happening and keep you up to date.',
     // eslint-disable-next-line react/display-name
     BackgroundComponent: () => (
       <Image
@@ -138,6 +140,11 @@ const overrides = {
         source={require('../onboarding/Connect_2x.png')}
       />
     ),
+  },
+  'ui-onboarding.Follow': {
+    slideTitle: 'Who would you like to follow?',
+    description:
+      'Follow the journal entries and prayer requests of others in your congregation.',
   },
 };
 

@@ -32,6 +32,7 @@ const Subtitle = styled({ textAlign: 'center' })(H4);
 const Landing = () => {
   const navigation = useNavigation();
   const source = useTheme();
+  console.log(source);
   const onPressPrimary = useCallback(() => navigation.navigate('Auth'), [
     navigation.navigate,
   ]);
@@ -52,7 +53,7 @@ const Landing = () => {
           }
         />
         <Subtitle>
-          We&apos;re not just a building you go to, but a family to belong to.
+          Fellowship is not just a place you go to, but a family you belong to.
         </Subtitle>
       </Content>
     </Slide>
