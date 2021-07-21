@@ -17,50 +17,77 @@ const resolver = {
 };
 
 class dataSource extends ContentItem.dataSource {
-  superGetCursorByChildContentItemId = this.getCursorByChildContentItemId;
-
-  superGetCursorByParentContentItemId = this.getCursorByParentContentItemId;
-
-  superGetCursorBySiblingContentItemId = this.getCursorBySiblingContentItemId;
+  baseCursorByChild = this.getCursorByChildContentItemId;
 
   getCursorByChildContentItemId = async (id) => {
-    const item = await this.getFromId(id);
+    const child = await this.getFromId(id);
 
-    if (!item.attributeValues?.series?.value)
-      return this.superGetCursorByChildContentItemId(id);
+    if (!child.attributeValues?.series?.value)
+      return this.baseCursorByChild(id);
 
     return this.request().filter(
-      `Guid eq guid'${item.attributeValues.series.value}'`
+      `Guid eq guid'${child.attributeValues.series.value}'`
     );
   };
 
-  getCursorByParentContentItemId = async (id) => {
-    const item = await this.getFromId(id);
-    const attributeValues = await this.request('AttributeValues')
-      .filter(`Value eq '${item.guid}' and Attribute/Id eq 5225`)
+  getCursorByParentContentItemId = async (parentId) => {
+    const { Auth, Campus } = this.context.dataSources;
+    const person = await Auth.getCurrentPerson();
+    const { name = '' } = await Campus.getForPerson({ id: person.id });
+    const parent = await this.getFromId(parentId);
+
+    // filter by series
+    const seriesAttributes = await this.request('AttributeValues')
+      .filter(`Value eq '${parent.guid}' and AttributeId eq 5225`)
       .get();
+    const seriesItemIds = seriesAttributes.map(({ entityId }) => entityId);
 
-    return this.getFromIds(
-      attributeValues.map(({ entityId }) => entityId)
-    ).sort(this.DEFAULT_SORT());
-  };
-
-  getCursorBySiblingContentItemId = async (id) => {
-    const item = await this.getFromId(id);
-    if (!item.attributeValues?.series?.value)
-      return this.superGetCursorBySiblingContentItemId(id);
-
-    const attributeValues = await this.request('AttributeValues')
+    // filter by campus
+    const campusAttributes = await this.request('AttributeValues')
       .filter(
-        `Value eq '${
-          item.attributeValues?.series?.value
-        }' and Attribute/Id eq 5225`
+        `Value eq '${name
+          .toLowerCase()
+          .replace(' ', '-')}' and AttributeId eq 8701`
       )
       .get();
+    const campusItemIds = campusAttributes.map(({ entityId }) => entityId);
 
-    return this.getFromIds(
-      attributeValues.map(({ entityId }) => entityId)
-    ).sort(this.DEFAULT_SORT());
+    // put them together
+    const ids = seriesItemIds.filter((id) => campusItemIds.includes(id));
+    return this.getFromIds(ids).sort(this.DEFAULT_SORT());
+  };
+
+  baseCursorBySibling = this.getCursorBySiblingContentItemId;
+
+  getCursorBySiblingContentItemId = async (siblingId) => {
+    const { Auth, Campus } = this.context.dataSources;
+    const person = await Auth.getCurrentPerson();
+    const { name = '' } = await Campus.getForPerson({ id: person.id });
+    const sibling = await this.getFromId(siblingId);
+
+    // filter by series
+    const seriesAttributes = await this.request('AttributeValues')
+      .filter(
+        `Value eq '${
+          sibling.attributeValues?.series?.value
+        }' and AttributeId eq 5225`
+      )
+      .get();
+    const seriesItemIds = seriesAttributes.map(({ entityId }) => entityId);
+
+    // filter by campus
+    const campusAttributes = await this.request('AttributeValues')
+      .filter(
+        `Value eq '${name
+          .toLowerCase()
+          .replace(' ', '-')}' and AttributeId eq 8701`
+      )
+      .get();
+    const campusItemIds = campusAttributes.map(({ entityId }) => entityId);
+
+    // put them together
+    const ids = seriesItemIds.filter((id) => campusItemIds.includes(id));
+    return this.getFromIds(ids).sort(this.DEFAULT_SORT());
   };
 
   getFeatures = async (item) => {
