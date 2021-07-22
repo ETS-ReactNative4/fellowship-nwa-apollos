@@ -110,7 +110,7 @@ TABS:
             channelIds:
               - 32
       type: VerticalCardList
-    - subtitle: Announcements
+    - subtitle: Featured
       algorithms:
         - type: CONTENT_FEED
           arguments:
@@ -118,93 +118,22 @@ TABS:
             channelIds:
               - 19
       type: HorizontalCardList
-    # - type: ActionBar
-    #   title: Welcome to Apollos
-    #   actions:
-    #     [
-    #       {
-    #         title: Check In,
-    #         icon: check,
-    #         action: OPEN_URL,
-    #         relatedNode: { __typename: Url, url: 'https://www.google.com' },
-    #       },
-    #     ]
-    # - algorithms:
-    #   - type: CONTENT_FEED
-    #     arguments:
-    #       channelIds:
-    #         - 6
-    #   type: HeroList
-    #   primaryAction:
-    #     # Right now, you hardcode exactly what GraphQL should return.
-    #     # Long term, we hope to have a more sophisticated mechanism for driving this field
-    #     action: OPEN_NODE
-    #     title: 'Read More'
-    #     relatedNode:
-    #       __typename: UniversalContentItem
-    #       id: 21
-    # - algorithms: [DAILY_PRAYER]
-    #   isCard: false
-    #   type: PrayerList
-    #   title: Daily Prayer
-    # - algorithms:
-    #     - type: CAMPAIGN_ITEMS
-    #       channelIds:
-    #         - 9
-    #   type: HeroList
-    #   isFeatured: true
-    #   subtitle: Featured
-    # - title: FOR YOU
-    #   algorithms: [SERMON_CHILDREN, PERSONA_FEED]
-    #   subtitle: Explore what God calls you to today
-    #   type: ActionList
-
-    # - title: RECOMMENDED
-    #   algorithms: [SERMON_CHILDREN]
-    #   subtitle: For Him
-    #   type: VerticalCardList
-    # - title: BULLETIN
-    #   subtitle: What's happening at apollos?
-    #   type: ActionList
-    #   algorithms:
-    #     - type: CONTENT_FEED
-    #       arguments:
-    #         channelIds:
-    #           - 13
-    #     - type: UPCOMING_EVENTS
 
   READ: # AKA EVENTS!
     - algorithms:
       - type: CONTENT_FEED
         arguments:
-          limit: 7
-          channelIds: [11]
+          limit: 6
+          channelIds: [19]
       type: HeroList
-      primaryAction:
-          action: OPEN_URL
-          title: All Events & Classes
-          relatedNode:
-            __typename: Url
-            url: 'https://www.fellowshipnwa.org/eventsandclasses'
-    # - title: Community
-    #   algorithms: [UPCOMING_EVENTS]
-    #   type: HorizontalCardList
-    - type: ActionTable
-      title: Events by ministry
-      subtitle: Find your next event
-      actions:
-        [
-          {
-            title: Children,
-            action: OPEN_URL,
-            relatedNode: { __typename: Url, url: 'fellowshipnwa://app-link/nav/MinistryEventList?ministry=Children' },
-          },
-          {
-            title: Students,
-            action: OPEN_URL,
-            relatedNode: { __typename: Url, url: 'fellowshipnwa://app-link/nav/MinistryEventList?ministry=Students' },
-          },
-        ]
+    - title: Community Events
+      type: HorizontalCardList
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            category: Community
+            channelIds: [11]
+            limit: 3
 
   WATCH:
     - algorithms:
