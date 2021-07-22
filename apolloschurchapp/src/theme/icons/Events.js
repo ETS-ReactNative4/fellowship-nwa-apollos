@@ -6,7 +6,7 @@ import { makeIcon } from '@apollosproject/ui-kit';
 
 const Icon = makeIcon(({ size = 32, fill } = {}) => (
   <Svg
-    width={size * 3}
+    width={size * 2.95}
     height={size}
     viewBox="0 0 837 203"
     fill={fill}
