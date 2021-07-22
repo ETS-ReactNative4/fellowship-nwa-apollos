@@ -31,7 +31,7 @@ import {
   FeatureFeed,
   // ActionAlgorithm,
   // Event,
-  PrayerRequest,
+  // PrayerRequest,
   Persona,
   Person,
   BinaryFiles,
@@ -41,6 +41,7 @@ import * as Theme from './theme';
 import * as ActionAlgorithm from './ActionAlgorithms';
 import * as ContentItem from './ContentItem';
 import * as Event from './Event';
+import * as PrayerRequest from './PrayerRequest';
 import * as Matrix from './Matrix';
 
 // This module is used to attach Rock User updating to the OneSignal module.

@@ -31,7 +31,7 @@ import {
   FeatureFeed,
   // ActionAlgorithm,
   // Event,
-  PrayerRequest,
+  // PrayerRequest,
   Persona,
   Person as RockPerson,
 } from '@apollosproject/data-connector-rock';
@@ -51,6 +51,7 @@ import * as Theme from './theme';
 import * as ActionAlgorithm from './ActionAlgorithms';
 import * as ContentItem from './ContentItem';
 import * as Event from './Event';
+import * as PrayerRequest from './PrayerRequest';
 import * as Matrix from './Matrix';
 
 // This modules ties together certain updates so they occurs in both Rock and Postgres.
