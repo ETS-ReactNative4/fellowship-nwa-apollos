@@ -97,10 +97,6 @@ const overlays = ({ colors: themeColors }) => ({
  */
 // This is not right...yet.
 const overrides = {
-  'ui-auth.Entry': {
-    authTitleText: 'test',
-    promptText: 'test',
-  },
   'ui-onboarding.Slide.SlideContent.Title': {
     textAlign: 'center',
   },
