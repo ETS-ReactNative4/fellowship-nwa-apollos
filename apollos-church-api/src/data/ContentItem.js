@@ -1,7 +1,12 @@
+import { gql } from 'apollo-server';
 import { ContentItem } from '@apollosproject/data-connector-rock';
 import ApollosConfig from '@apollosproject/config';
 
-const { schema } = ContentItem;
+const schema = gql`
+  ${ContentItem.schema}
+
+  extend type ContentItemsConnection @cacheControl(scope: PRIVATE)
+`;
 
 const resolver = {
   ...ContentItem.resolver,
