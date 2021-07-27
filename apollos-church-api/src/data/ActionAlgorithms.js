@@ -21,26 +21,40 @@ class dataSource extends ActionAlgorithm.dataSource {
 
     // 10 - Sermons
     // Congregation attribute returns the lowercase, hyphenated campus name
-    const validCongregationChannels = [10];
-    const congregationChannels = channelIds.filter((id) =>
-      validCongregationChannels.includes(id)
+    // Service attribute - we only want "adult" services
+    const validSermonChannels = [10];
+    const sermonChannels = channelIds.filter((id) =>
+      validSermonChannels.includes(id)
     );
-    const congregationItems = congregationChannels.length
-      ? await ContentItem.request(
-          `Apollos/ContentChannelItemsByAttributeValue?attributeValues=${name
-            .toLowerCase()
-            .replace(' ', '-')}&attributeKey=Congregation`
+    const congregationAttributeValues = await this.request('AttributeValues')
+      .filter(
+        `AttributeId eq 8701 and Value eq '${name
+          .toLowerCase()
+          .replace(' ', '-')}'`
+      )
+      .cache({ ttl: 60 })
+      .get();
+    const serviceAttributeValues = await this.request('AttributeValues')
+      .filter(`AttributeId eq 8702 and Value eq 'adults'`)
+      .cache({ ttl: 60 })
+      .get();
+    const sermonAttributeValues = congregationAttributeValues.filter(
+      ({ entityId }) =>
+        serviceAttributeValues.map((attr) => attr.entityId).includes(entityId)
+    );
+    const sermonItems = (await Promise.all(
+      sermonChannels.map((channelId) =>
+        ContentItem.getFromIds(
+          sermonAttributeValues.map((attr) => attr.entityId)
         )
-          .filterOneOf(
-            congregationChannels.map((id) => `ContentChannelId eq ${id}`)
-          )
-          .andFilter(ContentItem.LIVE_CONTENT())
+          .andFilter(`ContentChannelId eq ${channelId}`)
           .cache({ ttl: 60 })
           .orderBy('StartDateTime', 'desc')
           .top(limit)
           .skip(skip)
           .get()
-      : [];
+      )
+    )).flat();
 
     // 19 - News Highlights
     // 11 - Website Promotions
@@ -85,8 +99,7 @@ class dataSource extends ActionAlgorithm.dataSource {
 
     // generic items with no campus selector
     const noCampusChannels = channelIds.filter(
-      (id) =>
-        !validCongregationChannels.concat(validCampusChannels).includes(id)
+      (id) => !validSermonChannels.concat(validCampusChannels).includes(id)
     );
     const noCampusItems = noCampusChannels.length
       ? await ContentItem.byContentChannelIds(noCampusChannels)
@@ -96,7 +109,7 @@ class dataSource extends ActionAlgorithm.dataSource {
           .get()
       : [];
 
-    const items = noCampusItems.concat(congregationItems, campusItems);
+    const items = noCampusItems.concat(sermonItems, campusItems);
 
     return items.map((item, i) => ({
       id: `${item.id}${i}`,
