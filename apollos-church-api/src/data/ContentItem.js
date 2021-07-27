@@ -17,7 +17,7 @@ const resolver = {
         item
       )}${dataSources.ContentItem.createHTMLContent(
         item.attributeValues.summary?.value
-      )}`,
+      )}${dataSources.ContentItem.createHTMLFooter(item)}`,
   },
 };
 
@@ -230,6 +230,14 @@ class dataSource extends ContentItem.dataSource {
     if (header !== '') header = `<p>${header}</p>`;
 
     return header;
+  };
+
+  createHTMLFooter = (item) => {
+    if (item.attributeValues.discussionGuide?.value)
+      return `<p><h3>Discussion Guide</h3>${
+        item.attributeValues.discussionGuide.value
+      }</p>`;
+    return '';
   };
 }
 
