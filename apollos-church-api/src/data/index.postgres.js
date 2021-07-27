@@ -18,7 +18,7 @@ import {
   Interactions,
   RockConstants,
   // ContentItem,
-  ContentChannel,
+  // ContentChannel,
   Sharable,
   Auth,
   PersonalDevice,
@@ -50,6 +50,7 @@ import {
 import * as Theme from './theme';
 import * as ActionAlgorithm from './ActionAlgorithms';
 import * as ContentItem from './ContentItem';
+import * as ContentChannel from './ContentChannel';
 import * as Event from './Event';
 import * as PrayerRequest from './PrayerRequest';
 import * as Matrix from './Matrix';

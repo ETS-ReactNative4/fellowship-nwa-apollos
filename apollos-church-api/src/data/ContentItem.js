@@ -22,6 +22,77 @@ const resolver = {
 };
 
 class dataSource extends ContentItem.dataSource {
+  baseItemByChannelCursor = this.byContentChannelId;
+
+  byContentChannelId = async (id, category = '') => {
+    const { Auth, Campus } = this.context.dataSources;
+
+    const person = await Auth.getCurrentPerson();
+    const { name = '', guid: campusGuid } = await Campus.getForPerson({
+      id: person.id,
+    });
+    // 10 - sermons
+    // Congregation attribute returns the lowercase, hyphenated campus name
+    // Service attribute - we only want "adult" services
+    if (id === 10) {
+      const congregationAttributeValues = await this.request('AttributeValues')
+        .filter(
+          `AttributeId eq 8701 and Value eq '${name
+            .toLowerCase()
+            .replace(' ', '-')}'`
+        )
+        .cache({ ttl: 60 })
+        .get();
+      const serviceAttributeValues = await this.request('AttributeValues')
+        .filter(`AttributeId eq 8702 and Value eq 'adults'`)
+        .cache({ ttl: 60 })
+        .get();
+      const sermonAttributeValues = congregationAttributeValues.filter(
+        ({ entityId }) =>
+          serviceAttributeValues.map((attr) => attr.entityId).includes(entityId)
+      );
+      return this.getFromIds(sermonAttributeValues.map((attr) => attr.entityId))
+        .andFilter(`ContentChannelId eq ${id}`)
+        .cache({ ttl: 60 })
+        .orderBy('StartDateTime', 'desc');
+    }
+
+    // 19 - News Highlights
+    // 11 - Website Promotions
+    // Campus attribute (10878 for 19, 5083 for 11) returns a string list of campus guids
+    // Category attribute returns a guid from the Website Promotion Category defined type
+    if (id === 19 || id === 11) {
+      const campusAttributeValues = await this.request('AttributeValues')
+        .filter(
+          `(AttributeId eq 10878 or AttributeId eq 5083) and substringof('${campusGuid}', Value)`
+        )
+        .cache({ ttl: 60 })
+        .get();
+      let attributeValues = [];
+      if (category) {
+        const categories = await this.request('DefinedValues')
+          .filter('DefinedTypeId eq 136')
+          .cache({ ttl: 60 })
+          .get();
+        const { guid } = categories.find(({ value }) => value === category);
+        const categoryAttributeValues = await this.request('AttributeValues')
+          .filter(`AttributeId eq 10269 and Value eq '${guid}'`)
+          .cache({ ttl: 60 })
+          .get();
+        attributeValues = campusAttributeValues.filter(({ entityId }) =>
+          categoryAttributeValues
+            .map((attr) => attr.entityId)
+            .includes(entityId)
+        );
+      } else attributeValues = campusAttributeValues;
+      return this.getFromIds(attributeValues.map((attr) => attr.entityId))
+        .andFilter(`ContentChannelId eq ${id}`)
+        .cache({ ttl: 60 })
+        .orderBy('StartDateTime', 'desc');
+    }
+    return this.baseItemByChannelCursor(id);
+  };
+
   baseCursorByChild = this.getCursorByChildContentItemId;
 
   getCursorByChildContentItemId = async (id) => {
