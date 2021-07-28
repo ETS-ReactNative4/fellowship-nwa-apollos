@@ -32,7 +32,7 @@ const Subtitle = styled({ textAlign: 'center' })(H4);
 const Landing = () => {
   const navigation = useNavigation();
   const source = useTheme();
-  console.log(source);
+
   const onPressPrimary = useCallback(() => navigation.navigate('Auth'), [
     navigation.navigate,
   ]);

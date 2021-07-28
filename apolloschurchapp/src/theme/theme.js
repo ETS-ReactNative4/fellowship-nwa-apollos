@@ -95,8 +95,14 @@ const overlays = ({ colors: themeColors }) => ({
  * }
  * ```
  */
-// This is not right...yet.
+
 const overrides = {
+  // ui-auth.Entry will work once named entry is reviewed in core
+  'ui-auth.Entry': {
+    authTitleText: "Let's Connect!",
+    promptText:
+      'Sign in for a personalized experience that helps you grow and connect with God and others.',
+  },
   'ui-onboarding.Slide.SlideContent.Title': {
     textAlign: 'center',
   },
