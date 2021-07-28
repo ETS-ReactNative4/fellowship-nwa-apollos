@@ -31,40 +31,15 @@ const ActionTable = () => (
       <View>
         <RowHeader>
           <Name>
-            <H4>{'Connect with Fellowship'}</H4>
+            <H4>{'Additional Links'}</H4>
           </Name>
         </RowHeader>
         <TableView>
           <Touchable
-            onPress={() => openUrl('https://www.fellowshipnwa.org/serve')}
+            onPress={() => openUrl('https://www.fellowshipnwa.org/new')}
           >
             <Cell>
-              <CellText>Discover ways to Serve</CellText>
-              <CellIcon name="arrow-next" />
-            </Cell>
-          </Touchable>
-          <Divider />
-          <Touchable
-            onPress={() => openUrl('https://www.fellowshipnwa.org/pray')}
-          >
-            <Cell>
-              <CellText>Submit a Prayer</CellText>
-              <CellIcon name="arrow-next" />
-            </Cell>
-          </Touchable>
-          <Divider />
-          <Touchable
-            onPress={() => openUrl('https://www.fellowshipnwa.org/baptism')}
-          >
-            <Cell>
-              <CellText>Learn about Baptism</CellText>
-              <CellIcon name="arrow-next" />
-            </Cell>
-          </Touchable>
-          <Divider />
-          <Touchable onPress={() => openUrl('https://fellowshipnwa.org/care')}>
-            <Cell>
-              <CellText>Care & Counseling Center</CellText>
+              <CellText>I&apos;m New</CellText>
               <CellIcon name="arrow-next" />
             </Cell>
           </Touchable>
@@ -73,7 +48,50 @@ const ActionTable = () => (
             onPress={() => openUrl('https://www.fellowshipnwa.org/maps')}
           >
             <Cell>
-              <CellText>Our Locations</CellText>
+              <CellText>Maps, Times & Locations</CellText>
+              <CellIcon name="arrow-next" />
+            </Cell>
+          </Touchable>
+          <Divider />
+          <Touchable
+            onPress={() => openUrl('https://www.fellowshipnwa.org/care')}
+          >
+            <Cell>
+              <CellText>Counseling & Care</CellText>
+              <CellIcon name="arrow-next" />
+            </Cell>
+          </Touchable>
+          <Divider />
+          <Touchable onPress={() => openUrl('https://fellowshipnwa.org/cr')}>
+            <Cell>
+              <CellText>Celebrate Recovery</CellText>
+              <CellIcon name="arrow-next" />
+            </Cell>
+          </Touchable>
+          <Divider />
+          <Touchable
+            onPress={() => openUrl('https://www.fellowshipnwa.org/prayer')}
+          >
+            <Cell>
+              <CellText>Prayer</CellText>
+              <CellIcon name="arrow-next" />
+            </Cell>
+          </Touchable>
+          <Divider />
+          <Touchable
+            onPress={() => openUrl('https://www.fellowshipnwa.org/baptism')}
+          >
+            <Cell>
+              <CellText>Baptism</CellText>
+              <CellIcon name="arrow-next" />
+            </Cell>
+          </Touchable>
+          <Divider />
+          <Touchable
+            onPress={() => openUrl('https://www.fellowshipnwa.org/membership')}
+          >
+            <Cell>
+              <CellText>Become a Member</CellText>
               <CellIcon name="arrow-next" />
             </Cell>
           </Touchable>
@@ -84,7 +102,25 @@ const ActionTable = () => (
             }
           >
             <Cell>
-              <CellText>Contact Fellowship</CellText>
+              <CellText>Contact Us</CellText>
+              <CellIcon name="arrow-next" />
+            </Cell>
+          </Touchable>
+          <Divider />
+          <Touchable
+            onPress={() => openUrl('https://www.fellowshipnwa.org/aboutus')}
+          >
+            <Cell>
+              <CellText>About Us</CellText>
+              <CellIcon name="arrow-next" />
+            </Cell>
+          </Touchable>
+          <Divider />
+          <Touchable
+            onPress={() => openUrl('https://www.fellowshipnwa.org/home')}
+          >
+            <Cell>
+              <CellText>Fellowship Website</CellText>
               <CellIcon name="arrow-next" />
             </Cell>
           </Touchable>
