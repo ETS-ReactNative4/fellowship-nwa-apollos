@@ -45,6 +45,11 @@ import {
   NotificationPreference,
   Campus as PostgresCampus,
   Person as PostgresPerson,
+  // Media as PostgresMedia,
+  // ContentItem as PostgresContentItem,
+  // ContentItemsConnection,
+  // ContentItemCategory,
+  // Tag,
 } from '@apollosproject/data-connector-postgres';
 
 import * as Theme from './theme';
@@ -67,6 +72,11 @@ const data = {
   RockPerson, // This entry needs to come before (postgres) Person
   BinaryFiles, // This entry needs to come before (postgres) Person
   PostgresPerson, // Postgres person for now, as we extend this dataSource in the 'rockWithPostgres' file
+  // PostgresMedia,
+  // PostgresContentItem,
+  // ContentItemsConnection,
+  // ContentItemCategory,
+  // Tag,
   Cloudinary,
   Auth,
   AuthSms,
