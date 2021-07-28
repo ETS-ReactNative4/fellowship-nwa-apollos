@@ -20,7 +20,7 @@ const lightColors = {
 
 const darkColors = {
   primary: '#AFAFAF', // 27272E',
-  secondary: '#707F75',
+  secondary: '#4E9AF4',
   tertiary: '#AFAFAF',
 };
 
