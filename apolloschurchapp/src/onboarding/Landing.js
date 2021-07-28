@@ -13,14 +13,6 @@ const HeaderImage = styled({
   height: null,
 })(Image);
 
-const GrowImage = styled({
-  width: '85%',
-  height: null,
-  resizeMode: 'contain',
-  aspectRatio: 1012 / 355,
-  marginBottom: '5%',
-})(Image);
-
 const Content = styled({
   alignItems: 'center',
   justifyContent: 'center',
@@ -43,17 +35,14 @@ const Landing = () => {
       primaryNavText="Let's go!"
       scrollEnabled={false}
     >
-      <HeaderImage source={require('./Intro.png')} />
+      <HeaderImage
+        source={
+          source.dark ? require('./IntroDark.png') : require('./IntroLight.png')
+        }
+      />
       <Content>
-        <GrowImage
-          source={
-            source.dark
-              ? require('./GrowTogetherDark.png')
-              : require('./GrowTogetherLight.png')
-          }
-        />
         <Subtitle>
-          Fellowship is not just a place you go to, but a family you belong to.
+          We&apos;re not just a building you go to, but a family you belong to.
         </Subtitle>
       </Content>
     </Slide>
