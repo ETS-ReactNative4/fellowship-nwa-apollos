@@ -117,7 +117,7 @@ const overrides = {
     // eslint-disable-next-line react/display-name
     BackgroundComponent: () => (
       <Image
-        style={{ height: width * 0.75 }}
+        style={{ height: width * 0.7 }}
         resizeMode={'contain'}
         alignSelf={'center'}
         marginTop={'25%'}
@@ -132,7 +132,7 @@ const overrides = {
     // eslint-disable-next-line react/display-name
     BackgroundComponent: () => (
       <Image
-        style={{ height: width * 0.75 }}
+        style={{ height: width * 0.7 }}
         resizeMode={'contain'}
         alignSelf={'center'}
         marginTop={'25%'}
@@ -147,7 +147,7 @@ const overrides = {
     // eslint-disable-next-line react/display-name
     BackgroundComponent: () => (
       <Image
-        style={{ height: width * 0.75 }}
+        style={{ height: width * 0.7 }}
         resizeMode={'contain'}
         alignSelf={'center'}
         marginTop={'25%'}
