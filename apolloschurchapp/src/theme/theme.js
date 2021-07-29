@@ -1,5 +1,7 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Dimensions, Image } from 'react-native';
+
+const { width } = Dimensions.get('window');
 /* Add your custom theme definitions below. Anything that is supported in UI-Kit Theme can be
  overridden and/or customized here! */
 
@@ -115,8 +117,10 @@ const overrides = {
     // eslint-disable-next-line react/display-name
     BackgroundComponent: () => (
       <Image
+        style={{ height: width * 0.75 }}
+        resizeMode={'contain'}
         alignSelf={'center'}
-        marginTop={'15%'}
+        marginTop={'25%'}
         source={require('../onboarding/Welcome_2x.png')}
       />
     ),
@@ -128,8 +132,10 @@ const overrides = {
     // eslint-disable-next-line react/display-name
     BackgroundComponent: () => (
       <Image
+        style={{ height: width * 0.75 }}
+        resizeMode={'contain'}
         alignSelf={'center'}
-        marginTop={'15%'}
+        marginTop={'25%'}
         source={require('../onboarding/Gather_2x.png')}
       />
     ),
@@ -141,8 +147,10 @@ const overrides = {
     // eslint-disable-next-line react/display-name
     BackgroundComponent: () => (
       <Image
+        style={{ height: width * 0.75 }}
+        resizeMode={'contain'}
         alignSelf={'center'}
-        marginTop={'15%'}
+        marginTop={'25%'}
         source={require('../onboarding/Connect_2x.png')}
       />
     ),
