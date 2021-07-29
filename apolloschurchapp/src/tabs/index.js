@@ -27,24 +27,24 @@ const SearchIcon = withTheme(({ theme: { colors, sizing: { baseUnit } } }) => ({
 }))(Icon);
 
 // Home Tab Header Icon
-const FellowshipIcon = withTheme(({ theme: { sizing: { baseUnit } } }) => ({
+const FellowshipIcon = withTheme(({ theme }) => ({
   name: 'fellowship',
-  size: baseUnit * 2,
-  fill: '#FFFFFF',
+  size: theme.sizing.baseUnit * 2,
+  fill: theme.type === 'dark' ? '#FFFFFF' : theme.colors.primary,
 }))(Icon);
 
 // Watch & Listen Tab Header Icon
-const WatchListenIcon = withTheme(({ theme: { sizing: { baseUnit } } }) => ({
+const WatchListenIcon = withTheme(({ theme }) => ({
   name: 'watch-listen',
-  size: baseUnit * 2,
-  fill: '#FFFFFF',
+  size: theme.sizing.baseUnit * 2,
+  fill: theme.type === 'dark' ? '#FFFFFF' : theme.colors.primary,
 }))(Icon);
 
 // Events Tab Header Icon
-const EventsIcon = withTheme(({ theme: { sizing: { baseUnit } } }) => ({
+const EventsIcon = withTheme(({ theme }) => ({
   name: 'events',
-  size: baseUnit * 2,
-  fill: '#FFFFFF',
+  size: theme.sizing.baseUnit * 2,
+  fill: theme.type === 'dark' ? '#FFFFFF' : theme.colors.primary,
 }))(Icon);
 
 const SearchButton = ({ onPress }) => (
