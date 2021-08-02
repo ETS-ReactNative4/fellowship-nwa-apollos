@@ -134,6 +134,46 @@ TABS:
             category: Community
             channelIds: [11]
             limit: 3
+    - subtitle: Family Events
+      type: HorizontalCardList
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            category: Family
+            channelIds: [11]
+            limit: 3
+    - subtitle: Training Events
+      type: HorizontalCardList
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            category: Training
+            channelIds: [11]
+            limit: 3
+    - subtitle: Care Events
+      type: HorizontalCardList
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            category: Care
+            channelIds: [11]
+            limit: 3
+    - subtitle: Local Events
+      type: HorizontalCardList
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            category: Local
+            channelIds: [11]
+            limit: 3
+    - subtitle: Global Events
+      type: HorizontalCardList
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            category: Global
+            channelIds: [11]
+            limit: 3
 
   WATCH:
     - algorithms:
