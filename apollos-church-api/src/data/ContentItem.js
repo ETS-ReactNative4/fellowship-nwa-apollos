@@ -192,32 +192,53 @@ class dataSource extends ContentItem.dataSource {
     const resources = await Matrix.getItemsFromGuid(
       item.attributeValues.relatedFilesorLinks?.value
     );
-    if (!resources.length) return features;
-    const actions = await Promise.all(
-      resources.map(
-        async ({ attributeValues: { linkName, linkUrl, file } }) => {
-          let url = '';
-          if (linkUrl.value) {
-            url = ApollosConfig.ROCK.URL + linkUrl.value;
-          } else if (file.value) {
-            const blob = await BinaryFiles.request()
-              .filter(`Guid eq guid'${file.value}'`)
-              .first();
-            url = blob.url;
+    if (resources.length) {
+      const actions = await Promise.all(
+        resources.map(
+          async ({ attributeValues: { linkName, linkUrl, file } }) => {
+            let url = '';
+            if (linkUrl.value) {
+              url = ApollosConfig.ROCK.URL + linkUrl.value;
+            } else if (file.value) {
+              const blob = await BinaryFiles.request()
+                .filter(`Guid eq guid'${file.value}'`)
+                .first();
+              url = blob.url;
+            }
+            return {
+              title: linkName.value,
+              relatedNode: { __typename: 'Url', url },
+            };
           }
-          return {
-            title: linkName.value,
-            relatedNode: { __typename: 'Url', url },
-          };
-        }
-      )
-    );
-    features.push(
-      Feature.createActionTableFeature({
-        title: 'Resources',
-        actions,
-      })
-    );
+        )
+      );
+      features.push(
+        Feature.createActionTableFeature({
+          title: 'Resources',
+          actions,
+        })
+      );
+    }
+
+    // sign up button
+    const signupURL = `${process.env.ROCK_URL}${
+      item.attributeValues.registrationLinkUrl?.value
+    }`;
+    if (signupURL) {
+      features.push(
+        Feature.createButtonFeature({
+          id: item.attributeValues.registrationLinkUrl.id,
+          action: Feature.attachActionIds({
+            relatedNode: {
+              __typename: 'Url',
+              url: signupURL,
+            },
+            action: 'OPEN_AUTHENTICATED_URL',
+            title: 'Sign Up',
+          }),
+        })
+      );
+    }
 
     return features;
   };
