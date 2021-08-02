@@ -26,6 +26,13 @@ const resolver = {
         attributeValues.description?.value || content
       ),
   },
+  ContentSeriesContentItem: {
+    ...ContentItem.resolver.ContentSeriesContentItem,
+    htmlContent: ({ content, attributeValues }, _, { dataSources }) =>
+      dataSources.ContentItem.createHTMLContent(
+        attributeValues.description?.value || content
+      ),
+  },
 };
 
 class dataSource extends ContentItem.dataSource {
