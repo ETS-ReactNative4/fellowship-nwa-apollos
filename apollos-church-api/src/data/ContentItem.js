@@ -19,6 +19,13 @@ const resolver = {
         item.attributeValues.summary?.value
       )}${dataSources.ContentItem.createHTMLFooter(item)}`,
   },
+  UniversalContentItem: {
+    ...ContentItem.resolver.UniversalContentItem,
+    htmlContent: ({ content, attributeValues }, _, { dataSources }) =>
+      dataSources.ContentItem.createHTMLContent(
+        attributeValues.description?.value || content
+      ),
+  },
 };
 
 class dataSource extends ContentItem.dataSource {
