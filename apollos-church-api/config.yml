@@ -120,7 +120,8 @@ TABS:
       type: HorizontalCardList
 
   READ: # AKA EVENTS!
-    - algorithms:
+    - subtitle: Featured
+      algorithms:
       - type: CONTENT_FEED
         arguments:
           limit: 6
