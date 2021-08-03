@@ -231,7 +231,7 @@ class dataSource extends ContentItem.dataSource {
     const signupURL = `${process.env.ROCK_URL}${
       item.attributeValues.registrationLinkUrl?.value
     }`;
-    if (signupURL) {
+    if (item.attributeValues.registrationLinkUrl?.value) {
       features.push(
         Feature.createButtonFeature({
           id: item.attributeValues.registrationLinkUrl.id,
