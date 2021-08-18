@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server';
 import { ContentItem } from '@apollosproject/data-connector-rock';
 import ApollosConfig from '@apollosproject/config';
+import natural from 'natural';
 
 const schema = gql`
   ${ContentItem.schema}
@@ -37,6 +38,14 @@ const resolver = {
 
 class dataSource extends ContentItem.dataSource {
   baseItemByChannelCursor = this.byContentChannelId;
+
+  _coreCreateSummary = this.createSummary;
+
+  createSummary = ({ attributeValues, ...other }) => {
+    if (attributeValues?.description?.value)
+      return attributeValues.description.value;
+    return this._coreCreateSummary({ attributeValues, ...other });
+  };
 
   byContentChannelId = async (id, category = '') => {
     const { Auth, Campus } = this.context.dataSources;
