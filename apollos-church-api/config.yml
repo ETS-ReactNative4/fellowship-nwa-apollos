@@ -74,7 +74,7 @@ ROCK_MAPPINGS:
       ContentChannelId: [12]
     DevotionalContentItem:
       EntityType: ContentChannelItem
-      ContentChannelId: [32]
+      ContentChannelId: [32, 38]
     MediaContentItem:
       EntityType: ContentChannelItem
     UniversalContentItem:
@@ -102,7 +102,7 @@ TABS:
       isCard: false
       type: PrayerList
       subtitle: Daily Prayer
-    - subtitle: Daily Scripture
+    - subtitle: Grow Together
       algorithms:
         - type: CONTENT_FEED
           arguments:
@@ -110,8 +110,7 @@ TABS:
             channelIds:
               - 32
       type: VerticalCardList
-    - subtitle: Weekly Guide
-      algorithms:
+    - algorithms:
         - type: CONTENT_FEED
           arguments:
             limit: 1
@@ -219,7 +218,7 @@ TABS:
           id: 12
           name: All Series
 
-    - subtitle: Podcast # Missing Content Channel in Rock
+    - subtitle: Podcasts # Missing Content Channel in Rock
       algorithms:
         - type: CONTENT_FEED
           arguments:
