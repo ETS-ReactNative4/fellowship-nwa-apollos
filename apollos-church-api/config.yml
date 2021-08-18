@@ -110,6 +110,14 @@ TABS:
             channelIds:
               - 32
       type: VerticalCardList
+    - subtitle: Weekly Guide
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            limit: 1
+            channelIds:
+              - 38
+      type: VerticalCardList
     - subtitle: Featured
       algorithms:
         - type: CONTENT_FEED
@@ -209,6 +217,31 @@ TABS:
           __typename: ContentChannel
           id: 12
           name: All Series
+
+    - subtitle: Podcast # Missing Content Channel in Rock
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            limit: 6
+            channelIds:
+              - 34
+      type: HorizontalCardList
+
+    - subtitle: Worship Music # Missing Content Channel in Rock
+      algorithms:
+        - type: CONTENT_FEED
+          arguments:
+            limit: 6
+            channelIds:
+              - 35
+      type: HorizontalCardList
+      primaryAction:
+        action: OPEN_CHANNEL
+        title: 'View All'
+        relatedNode:
+          __typename: ContentChannel
+          id: 35
+          name: Worship Music
 
   # PRAY: # NOT USED
   #   - algorithms: [DAILY_PRAYER]
