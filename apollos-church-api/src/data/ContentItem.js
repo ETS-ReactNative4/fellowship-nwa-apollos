@@ -1,7 +1,6 @@
 import { gql } from 'apollo-server';
 import { ContentItem } from '@apollosproject/data-connector-rock';
 import ApollosConfig from '@apollosproject/config';
-import natural from 'natural';
 
 const schema = gql`
   ${ContentItem.schema}
@@ -240,6 +239,24 @@ class dataSource extends ContentItem.dataSource {
             },
             action: 'OPEN_AUTHENTICATED_URL',
             title: 'Sign Up',
+          }),
+        })
+      );
+    }
+
+    // generic link button (used for podcasts)
+    const linkUrl = item.attributeValues.linkUrl?.value;
+    if (linkUrl) {
+      features.push(
+        Feature.createButtonFeature({
+          id: linkUrl,
+          action: Feature.attachActionIds({
+            relatedNode: {
+              __typename: 'Url',
+              url: linkUrl,
+            },
+            action: 'OPEN_URL',
+            title: item.attributeValues.linkText?.value || 'Open',
           }),
         })
       );
