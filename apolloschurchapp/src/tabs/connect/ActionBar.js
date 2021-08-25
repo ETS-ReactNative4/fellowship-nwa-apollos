@@ -19,7 +19,7 @@ const Toolbar = () => (
           label="Give"
         />
         <ActionBarItem
-          onPress={() => openUrl('https://www.fellowshipnwa.org/Home')}
+          onPress={() => openUrl('https://www.fellowshipnwa.org/serve')}
           icon="hand-waving"
           label="Serve"
         />
