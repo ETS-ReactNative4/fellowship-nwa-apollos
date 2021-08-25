@@ -186,10 +186,10 @@
   dependencies:
     js-yaml "^3.12.0"
 
-"@apollosproject/data-connector-algolia-search@^2.30.0":
-  version "2.30.0"
-  resolved "https://registry.yarnpkg.com/@apollosproject/data-connector-algolia-search/-/data-connector-algolia-search-2.30.0.tgz#1d1eb5e61bfdf18e38bcf3edcbe5bc725134574b"
-  integrity sha512-h7jyOmRw+pe4cQuSVWYB8INZX9VOEuxYBEcshKkZr8+pII+l5AoRJrBPz3oWHADealq1FoMp1i4VX9+voyT/Aw==
+"@apollosproject/data-connector-algolia-search@^2.30.1-canary.6":
+  version "2.30.1-canary.6"
+  resolved "https://registry.yarnpkg.com/@apollosproject/data-connector-algolia-search/-/data-connector-algolia-search-2.30.1-canary.6.tgz#e82adff76a25cef2d34eb237dd3d3b7299b8b711"
+  integrity sha512-5uPeAJqBUKuEt7dLiV8L37CiiW6QMjWmYF7m9KEctNS6OPSMQJOFHw2KYlYoSf6njD1JLmkI3HCkkpCdYgHGGw==
   dependencies:
     "@apollosproject/server-core" "^2.30.0"
     algoliasearch "^3.34.0"

@@ -128,6 +128,8 @@ class dataSource extends ContentItem.dataSource {
     );
   };
 
+  baseCursorByParent = this.getCursorByParentContentItemId;
+
   getCursorByParentContentItemId = async (parentId) => {
     const { Auth, Campus } = this.context.dataSources;
     const person = await Auth.getCurrentPerson();
@@ -139,6 +141,10 @@ class dataSource extends ContentItem.dataSource {
       .filter(`Value eq '${parent.guid}' and AttributeId eq 5225`)
       .get();
     const seriesItemIds = seriesAttributes.map(({ entityId }) => entityId);
+
+    // if there are no series items, it probably means they've set up the
+    // channel like we're expecting
+    if (!seriesItemIds.length) return this.baseCursorByParent(parentId);
 
     // filter by campus
     const campusAttributes = await this.request('AttributeValues')
@@ -172,6 +178,10 @@ class dataSource extends ContentItem.dataSource {
       )
       .get();
     const seriesItemIds = seriesAttributes.map(({ entityId }) => entityId);
+
+    // if there are no series items, it probably means they've set up the
+    // channel like we're expecting
+    if (!seriesItemIds.length) return this.baseCursorBySibling(siblingId);
 
     // filter by campus
     const campusAttributes = await this.request('AttributeValues')
