@@ -221,6 +221,7 @@ class dataSource extends ContentItem.dataSource {
             }
             return {
               title: linkName.value,
+              action: 'OPEN_URL',
               relatedNode: { __typename: 'Url', url },
             };
           }
