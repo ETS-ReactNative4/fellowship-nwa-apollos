@@ -20,7 +20,6 @@ import {
   Providers as ThemeProvider,
 } from '@apollosproject/ui-kit';
 import Passes from '@apollosproject/ui-passes';
-import { MapViewConnected as Location } from '@apollosproject/ui-mapview';
 import Auth, { ProtectedRoute } from '@apollosproject/ui-auth';
 import { Onboarding } from '@apollosproject/ui-onboarding';
 
@@ -36,6 +35,7 @@ import Tabs from './tabs';
 import customTheme, { customIcons } from './theme';
 
 import Landing from './onboarding/Landing';
+import LocationWithUpdates from './LocationWithUpdates';
 
 enableScreens(); // improves performance for react-navigation
 
@@ -135,7 +135,7 @@ const App = () => {
                   stackPresentation: 'push',
                 }}
               />
-              <Screen name="Location" component={Location} />
+              <Screen name="Location" component={LocationWithUpdates} />
               <Screen
                 name="Passes"
                 component={Passes}
