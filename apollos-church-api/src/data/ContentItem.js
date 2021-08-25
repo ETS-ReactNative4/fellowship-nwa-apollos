@@ -46,34 +46,45 @@ class dataSource extends ContentItem.dataSource {
     return this._coreCreateSummary({ attributeValues, ...other });
   };
 
+  getAllFilteredSermonIds = async () => {
+    const { Auth, Campus } = this.context.dataSources;
+
+    const person = await Auth.getCurrentPerson();
+    const { name = '' } = await Campus.getForPerson({
+      id: person.id,
+    });
+    const congregationAttributeValues = await this.request('AttributeValues')
+      .filter(
+        `AttributeId eq 8701 and Value eq '${name
+          .toLowerCase()
+          .replace(' ', '-')}'`
+      )
+      .cache({ ttl: 60 })
+      .get();
+    const serviceAttributeValues = await this.request('AttributeValues')
+      .filter(`AttributeId eq 8702 and Value eq 'adults'`)
+      .cache({ ttl: 60 })
+      .get();
+    const sermonAttributeValues = congregationAttributeValues.filter(
+      ({ entityId }) =>
+        serviceAttributeValues.map((attr) => attr.entityId).includes(entityId)
+    );
+    return sermonAttributeValues.map((attr) => attr.entityId);
+  };
+
   byContentChannelId = async (id, category = '') => {
     const { Auth, Campus } = this.context.dataSources;
 
     const person = await Auth.getCurrentPerson();
-    const { name = '', guid: campusGuid } = await Campus.getForPerson({
+    const { guid: campusGuid } = await Campus.getForPerson({
       id: person.id,
     });
     // 10 - sermons
     // Congregation attribute returns the lowercase, hyphenated campus name
     // Service attribute - we only want "adult" services
     if (id === 10) {
-      const congregationAttributeValues = await this.request('AttributeValues')
-        .filter(
-          `AttributeId eq 8701 and Value eq '${name
-            .toLowerCase()
-            .replace(' ', '-')}'`
-        )
-        .cache({ ttl: 60 })
-        .get();
-      const serviceAttributeValues = await this.request('AttributeValues')
-        .filter(`AttributeId eq 8702 and Value eq 'adults'`)
-        .cache({ ttl: 60 })
-        .get();
-      const sermonAttributeValues = congregationAttributeValues.filter(
-        ({ entityId }) =>
-          serviceAttributeValues.map((attr) => attr.entityId).includes(entityId)
-      );
-      return this.getFromIds(sermonAttributeValues.map((attr) => attr.entityId))
+      const sermonIds = await this.getAllFilteredSermonIds();
+      return this.getFromIds(sermonIds)
         .andFilter(`ContentChannelId eq ${id}`)
         .cache({ ttl: 60 })
         .orderBy('StartDateTime', 'desc');
@@ -131,9 +142,6 @@ class dataSource extends ContentItem.dataSource {
   baseCursorByParent = this.getCursorByParentContentItemId;
 
   getCursorByParentContentItemId = async (parentId) => {
-    const { Auth, Campus } = this.context.dataSources;
-    const person = await Auth.getCurrentPerson();
-    const { name = '' } = await Campus.getForPerson({ id: person.id });
     const parent = await this.getFromId(parentId);
 
     // filter by series
@@ -146,27 +154,17 @@ class dataSource extends ContentItem.dataSource {
     // channel like we're expecting
     if (!seriesItemIds.length) return this.baseCursorByParent(parentId);
 
-    // filter by campus
-    const campusAttributes = await this.request('AttributeValues')
-      .filter(
-        `Value eq '${name
-          .toLowerCase()
-          .replace(' ', '-')}' and AttributeId eq 8701`
-      )
-      .get();
-    const campusItemIds = campusAttributes.map(({ entityId }) => entityId);
+    // the alternative will only work for sermon series channels
+    const sermonIds = await this.getAllFilteredSermonIds();
 
     // put them together
-    const ids = seriesItemIds.filter((id) => campusItemIds.includes(id));
+    const ids = seriesItemIds.filter((id) => sermonIds.includes(id));
     return this.getFromIds(ids).sort(this.DEFAULT_SORT());
   };
 
   baseCursorBySibling = this.getCursorBySiblingContentItemId;
 
   getCursorBySiblingContentItemId = async (siblingId) => {
-    const { Auth, Campus } = this.context.dataSources;
-    const person = await Auth.getCurrentPerson();
-    const { name = '' } = await Campus.getForPerson({ id: person.id });
     const sibling = await this.getFromId(siblingId);
 
     // filter by series
@@ -183,18 +181,11 @@ class dataSource extends ContentItem.dataSource {
     // channel like we're expecting
     if (!seriesItemIds.length) return this.baseCursorBySibling(siblingId);
 
-    // filter by campus
-    const campusAttributes = await this.request('AttributeValues')
-      .filter(
-        `Value eq '${name
-          .toLowerCase()
-          .replace(' ', '-')}' and AttributeId eq 8701`
-      )
-      .get();
-    const campusItemIds = campusAttributes.map(({ entityId }) => entityId);
+    // the alternative will only work for sermon series channels
+    const sermonIds = await this.getAllFilteredSermonIds();
 
     // put them together
-    const ids = seriesItemIds.filter((id) => campusItemIds.includes(id));
+    const ids = seriesItemIds.filter((id) => sermonIds.includes(id));
     return this.getFromIds(ids).sort(this.DEFAULT_SORT());
   };
 
