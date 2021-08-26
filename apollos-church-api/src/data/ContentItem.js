@@ -298,10 +298,10 @@ class dataSource extends ContentItem.dataSource {
 
     if (header !== '' && item.attributeValues.summary.value !== '') {
       // Checks for Vimeo or YouTube link and Summary content
-      header = `<p>${header}</p><h3>About this Message</h3>`;
+      header = `${header}<h4>About this Message</h4>`;
     } else if (item.attributeValues.summary.value !== '') {
       // Checks for Summary content
-      header = `<h3>About this Message</h3>`;
+      header = `<h4>About this Message</h4>`;
     }
 
     return header;
@@ -309,7 +309,7 @@ class dataSource extends ContentItem.dataSource {
 
   createHTMLFooter = (item) => {
     if (item.attributeValues.discussionGuide?.value)
-      return `<p><h3>Discussion Guide</h3>${
+      return `<h4>Discussion Guide</h4><p>${
         item.attributeValues.discussionGuide.value
       }</p>`;
     return '';
