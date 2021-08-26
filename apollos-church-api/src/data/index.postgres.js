@@ -113,7 +113,12 @@ const data = {
   Analytics,
   PersonalDevice,
   Pass,
-  Search,
+  // turns off search indexing until its fixed
+  Search: {
+    schema: Search.schema,
+    resolver: Search.resolver,
+    dataSource: Search.dataSource,
+  },
   Template,
   Campus,
   Group,

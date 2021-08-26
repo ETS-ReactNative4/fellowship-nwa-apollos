@@ -1,5 +1,7 @@
 import React from 'react';
-import { Dimensions, Image } from 'react-native';
+import { Dimensions, Image, Text } from 'react-native';
+import { ButtonLink } from '@apollosproject/ui-kit';
+import { safeHandleUrl } from '@apollosproject/ui-connected';
 
 const { width } = Dimensions.get('window');
 /* Add your custom theme definitions below. Anything that is supported in UI-Kit Theme can be
@@ -109,8 +111,17 @@ const overrides = {
   // ui-auth.Entry will work once named entry is reviewed in core
   'ui-auth.Entry': {
     authTitleText: "Let's Connect!",
-    promptText:
-      'Sign in for a personalized experience that helps you grow and connect with God and others.',
+    // eslint-disable-next-line react/display-name
+    promptText: () => (
+      <Text>
+        Sign in to build a daily spiritual habit with others. Just checking us
+        out? Visit our{' '}
+        <ButtonLink onPress={() => safeHandleUrl('https://fellowshipnwa.org')}>
+          website
+        </ButtonLink>{' '}
+        to learn more.
+      </Text>
+    ),
   },
   'ui-kit.Button.ButtonStyles': {
     backgroundColor: lightColors.secondary,
