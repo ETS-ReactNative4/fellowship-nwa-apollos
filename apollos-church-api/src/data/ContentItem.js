@@ -90,6 +90,21 @@ class dataSource extends ContentItem.dataSource {
         .orderBy('StartDateTime', 'desc');
     }
 
+    // 12 - sermon series
+    // ShowOnApp attribute
+    if (id === 12) {
+      const seriesAttributeValues = await this.request('AttributeValues')
+        .filter(`AttributeId eq 17246 and Value eq 'True'`)
+        .cache({ ttl: 60 })
+        .get();
+      return this.getFromIds(
+        seriesAttributeValues.map(({ entityId }) => entityId)
+      )
+        .andFilter(`ContentChannelId eq ${id}`)
+        .cache({ ttl: 60 })
+        .orderBy('StartDateTime', 'desc');
+    }
+
     // 19 - News Highlights
     // 11 - Website Promotions
     // Campus attribute (10878 for 19, 5083 for 11) returns a string list of campus guids
