@@ -24,7 +24,7 @@ import {
   PersonalDevice,
   Template,
   AuthSms,
-  Campus,
+  // Campus,
   Group,
   BinaryFiles,
   FeatureFeed,
@@ -63,6 +63,7 @@ import * as Event from './Event';
 import * as PrayerRequest from './PrayerRequest';
 import * as Matrix from './Matrix';
 import * as RockPerson from './RockPerson';
+import * as Campus from './Campus';
 
 // This modules ties together certain updates so they occurs in both Rock and Postgres.
 // Will be eliminated in the future through an enhancement to the Shovel
