@@ -9,7 +9,10 @@ import {
   Touchable,
 } from '@apollosproject/ui-kit';
 import { useApolloClient } from '@apollo/client';
-import { createFeatureFeedTab } from '@apollosproject/ui-connected';
+import {
+  createFeatureFeedTab,
+  CampusTabComponent,
+} from '@apollosproject/ui-connected';
 import { checkOnboardingStatusAndNavigate } from '@apollosproject/ui-onboarding';
 import Connect from './connect';
 import tabBarIcon from './tabBarIcon';
@@ -76,6 +79,7 @@ const HomeTab = createFeatureFeedTab({
   },
   tabName: 'Home',
   feedName: 'HOME',
+  TabComponent: CampusTabComponent,
 });
 
 const EventsTab = createFeatureFeedTab({
@@ -87,6 +91,7 @@ const EventsTab = createFeatureFeedTab({
   },
   tabName: 'Events',
   feedName: 'READ',
+  TabComponent: CampusTabComponent,
 });
 
 const WatchTab = createFeatureFeedTab({
@@ -98,6 +103,7 @@ const WatchTab = createFeatureFeedTab({
   },
   tabName: 'Watch',
   feedName: 'WATCH',
+  TabComponent: CampusTabComponent,
 });
 
 const { Navigator, Screen } = createBottomTabNavigator();
