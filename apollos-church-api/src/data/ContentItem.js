@@ -72,7 +72,11 @@ class dataSource extends ContentItem.dataSource {
     return sermonAttributeValues.map((attr) => attr.entityId);
   };
 
-  byContentChannelId = async (id, category = '') => {
+  baseChannelById = this.byContentChannelId;
+
+  byContentChannelId = async (id, category = '', filtered = true) => {
+    if (!filtered) return this.baseChannelById(id);
+
     const { Auth, Campus } = this.context.dataSources;
 
     const person = await Auth.getCurrentPerson();
