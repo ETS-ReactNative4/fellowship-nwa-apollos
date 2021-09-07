@@ -227,7 +227,7 @@ TABS:
               - 34
       type: HorizontalCardList
 
-    - subtitle: Worship Music # Missing Content Channel in Rock
+    - subtitle: Fellowship Worship
       algorithms:
         - type: CONTENT_FEED
           arguments:
