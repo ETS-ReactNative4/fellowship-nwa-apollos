@@ -66,11 +66,7 @@ import * as Search from './Algolia';
 
 // This modules ties together certain updates so they occurs in both Rock and Postgres.
 // Will be eliminated in the future through an enhancement to the Shovel
-import {
-  Person,
-  OneSignal,
-  Followings as FollowingsPostgresBridge,
-} from './rockWithPostgres';
+import { Person, OneSignal } from './rockWithPostgres';
 
 const postgresContentModules = {
   ActionAlgorithm: PostgresActionAlgorithm,
@@ -92,7 +88,6 @@ const rockContentModules = {
 const data = {
   Interfaces,
   Followings,
-  FollowingsPostgresBridge, // This entry needs to come after Followings.
   FeatureFeed,
   RockPerson, // This entry needs to come before (postgres) Person
   BinaryFiles, // This entry needs to come before (postgres) Person
