@@ -12,6 +12,7 @@ class dataSource extends Campus.dataSource {
         'Fellowship Fayetteville',
         'Fellowship Mosaic',
         'Fellowship Rogers',
+        'Fellowship Bentonville',
       ].includes(name)
     );
   };
