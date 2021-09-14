@@ -157,7 +157,7 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
-        resValue "string", "build_config_package", "com.differential.apollos"
+        resValue "string", "build_config_package", "com.fellowshipnwa.churchapp"
         multiDexEnabled true
     }
     signingConfigs {
