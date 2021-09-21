@@ -224,6 +224,13 @@ TABS:
             channelIds:
               - 34
       type: HorizontalCardList
+      primaryAction:
+        action: OPEN_CHANNEL
+        title: 'View All'
+        relatedNode:
+          __typename: ContentChannel
+          id: 34
+          name: Podcasts
 
     - subtitle: Fellowship Worship
       algorithms:
