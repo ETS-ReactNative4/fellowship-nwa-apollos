@@ -332,6 +332,23 @@ class dataSource extends ContentItem.dataSource {
       }</p>`;
     return '';
   };
+
+  getActiveLiveStreamContent = async () => {
+    const { LiveStream } = this.context.dataSources;
+    const { isLive } = await LiveStream.getLiveStream();
+    if (!isLive) return [];
+
+    const serviceAttributeValues = await this.request('AttributeValues')
+      .filter(`AttributeId eq 8702 and Value eq 'adults'`)
+      .cache({ ttl: 60 })
+      .get();
+    return this.getFromIds(serviceAttributeValues.map((attr) => attr.entityId))
+      .andFilter(`ContentChannelId eq 10`)
+      .cache({ ttl: 60 })
+      .top(3)
+      .orderBy('StartDateTime', 'desc')
+      .get();
+  };
 }
 
 export { schema, resolver, dataSource };

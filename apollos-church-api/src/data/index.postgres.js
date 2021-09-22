@@ -7,7 +7,7 @@ import {
 
 import * as Analytics from '@apollosproject/data-connector-analytics';
 import * as Scripture from '@apollosproject/data-connector-bible';
-import * as LiveStream from '@apollosproject/data-connector-church-online';
+// import * as LiveStream from '@apollosproject/data-connector-church-online';
 import * as Cloudinary from '@apollosproject/data-connector-cloudinary';
 // import * as Search from '@apollosproject/data-connector-algolia-search';
 import * as Pass from '@apollosproject/data-connector-passes';
@@ -63,6 +63,7 @@ import * as Matrix from './Matrix';
 import * as RockPerson from './RockPerson';
 import * as Campus from './Campus';
 import * as Search from './Algolia';
+import * as LiveStream from './LiveStream';
 
 // This modules ties together certain updates so they occurs in both Rock and Postgres.
 // Will be eliminated in the future through an enhancement to the Shovel
