@@ -80,7 +80,7 @@ class dataSource extends ContentItem.dataSource {
     const { Auth, Campus } = this.context.dataSources;
 
     const person = await Auth.getCurrentPerson();
-    const { guid: campusGuid } = await Campus.getForPerson({
+    const { guid: campusGuid, name = '' } = await Campus.getForPerson({
       id: person.id,
     });
     // 10 - sermons
@@ -95,12 +95,26 @@ class dataSource extends ContentItem.dataSource {
     }
 
     // 12 - sermon series
-    // ShowOnApp attribute
     if (id === 12) {
-      const seriesAttributeValues = await this.request('AttributeValues')
+      const congregationAttributeValues = await this.request('AttributeValues')
+        .filter(
+          `AttributeId eq 17890 and Value eq '${name
+            .toLowerCase()
+            .replace(' ', '-')}'`
+        )
+        .cache({ ttl: 60 })
+        .get();
+      // ShowOnApp attribute
+      const showOnAppAttributeValues = await this.request('AttributeValues')
         .filter(`AttributeId eq 17246 and Value eq 'True'`)
         .cache({ ttl: 60 })
         .get();
+      const seriesAttributeValues = congregationAttributeValues.filter(
+        ({ entityId }) =>
+          showOnAppAttributeValues
+            .map((attr) => attr.entityId)
+            .includes(entityId)
+      );
       return this.getFromIds(
         seriesAttributeValues.map(({ entityId }) => entityId)
       )
