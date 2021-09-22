@@ -66,7 +66,11 @@ import * as Search from './Algolia';
 
 // This modules ties together certain updates so they occurs in both Rock and Postgres.
 // Will be eliminated in the future through an enhancement to the Shovel
-import { Person, OneSignal } from './rockWithPostgres';
+import {
+  Person,
+  OneSignal,
+  RockDefaultCampusOverride,
+} from './rockWithPostgres';
 
 const postgresContentModules = {
   ActionAlgorithm: PostgresActionAlgorithm,
@@ -83,6 +87,7 @@ const rockContentModules = {
   Feature: RockFeature,
   ContentItem: RockContentItem,
   ContentChannel,
+  RockDefaultCampusOverride,
 };
 
 const data = {
@@ -92,6 +97,8 @@ const data = {
   RockPerson, // This entry needs to come before (postgres) Person
   BinaryFiles, // This entry needs to come before (postgres) Person
   PostgresPerson, // Postgres person for now, as we extend this dataSource in the 'rockWithPostgres' file
+  PostgresCampus,
+  Campus,
   ...(process.env.DATABASE_CONTENT
     ? postgresContentModules
     : rockContentModules),
@@ -110,7 +117,6 @@ const data = {
   Pass,
   Search,
   Template,
-  Campus,
   Group,
   Event,
   Cache,
@@ -119,7 +125,6 @@ const data = {
   UserLike,
   UserFlag,
   Follow,
-  PostgresCampus,
   Notification,
   NotificationPreference,
   OneSignal,

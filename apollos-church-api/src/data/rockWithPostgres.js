@@ -124,6 +124,7 @@ export const RockDefaultCampusOverride = {
   resolver: {
     Mutation: {
       updateUserCampus: async (root, { campusId }, { dataSources }) => {
+        console.log('updating campus');
         await dataSources.Campus.updateCurrentUserCampus({ campusId }); // updates in Rock
 
         const { id: rockCampusId } = parseGlobalId(campusId);
@@ -156,4 +157,3 @@ export const PostgresDefaultCampusOverride = {
     },
   },
 };
-
