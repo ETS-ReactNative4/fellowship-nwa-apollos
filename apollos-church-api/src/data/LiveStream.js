@@ -71,8 +71,7 @@ class dataSource extends LiveStream.dataSource {
         return {
           contentItem: item,
           ...(await this.getLiveStream()),
-          // isLive: isPast(times[0]) && isFuture(times[1]),
-          isLive: true,
+          isLive: isPast(times[0]) && isFuture(times[1]),
           media: { sources: [{ uri: url }] },
         };
       })
