@@ -33,8 +33,6 @@
           <action android:name="android.intent.action.VIEW" />
           <category android:name="android.intent.category.DEFAULT" />
           <category android:name="android.intent.category.BROWSABLE" />
-
-          <!-- Handle urls starting with "http://www.example.com/products" -->
           <data android:scheme="https"
                 android:host="fellowship-nwa.herokuapp.com"
                 android:pathPrefix="/app-link" />

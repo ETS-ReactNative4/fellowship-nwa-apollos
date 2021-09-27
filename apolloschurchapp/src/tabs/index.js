@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { View } from 'react-native';
+import { Query } from '@apollo/client/react/components';
+import { get } from 'lodash';
 import { useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
@@ -11,10 +14,15 @@ import {
 import { useApolloClient } from '@apollo/client';
 import {
   createFeatureFeedTab,
+  UserAvatarConnected,
+  ConnectScreenConnected,
   CampusTabComponent,
+  GET_USER_PROFILE,
 } from '@apollosproject/ui-connected';
 import { checkOnboardingStatusAndNavigate } from '@apollosproject/ui-onboarding';
-import Connect from './connect';
+import ActionTable from '../ui/ActionTable';
+import ActionBar from '../ui/ActionBar';
+import CurrentCampus from '../ui/CurrentCampus';
 import tabBarIcon from './tabBarIcon';
 
 // const HeaderLogo = withTheme(({ theme }) => ({
@@ -29,27 +37,6 @@ const SearchIcon = withTheme(({ theme: { colors, sizing: { baseUnit } } }) => ({
   fill: colors.primary,
 }))(Icon);
 
-// Home Tab Header Icon
-const FellowshipIcon = withTheme(({ theme }) => ({
-  name: 'fellowship',
-  size: theme.sizing.baseUnit * 2,
-  fill: theme.type === 'dark' ? '#FFFFFF' : theme.colors.primary,
-}))(Icon);
-
-// Watch & Listen Tab Header Icon
-const WatchListenIcon = withTheme(({ theme }) => ({
-  name: 'watch-listen',
-  size: theme.sizing.baseUnit * 2,
-  fill: theme.type === 'dark' ? '#FFFFFF' : theme.colors.primary,
-}))(Icon);
-
-// Events Tab Header Icon
-const EventsIcon = withTheme(({ theme }) => ({
-  name: 'events',
-  size: theme.sizing.baseUnit * 2,
-  fill: theme.type === 'dark' ? '#FFFFFF' : theme.colors.primary,
-}))(Icon);
-
 const SearchButton = ({ onPress }) => (
   <Touchable onPress={onPress}>
     <SearchIcon />
@@ -60,21 +47,95 @@ SearchButton.propTypes = {
   onPress: PropTypes.func,
 };
 
-// const HeaderLeft = () => <HeaderLogo />;
-const HeaderRight = () => {
-  const navigation = useNavigation();
-  return <SearchButton onPress={() => navigation.navigate('Search')} />;
+const Avatar = withTheme(({ theme: { sizing: { baseUnit } } }) => ({
+  size: 'small',
+  containerStyle: {
+    paddingBottom: baseUnit * 0.25,
+  },
+}))(UserAvatarConnected);
+
+const ProfileButton = ({ onPress }) => (
+  <Touchable onPress={onPress}>
+    <View>
+      <Avatar />
+    </View>
+  </Touchable>
+);
+
+ProfileButton.propTypes = {
+  onPress: PropTypes.func,
 };
 
-// Blank HeaderCenter
-const BlankHeaderCenter = () => null;
+const HeaderLeft = () => {
+  const navigation = useNavigation();
+  return (
+    <ProfileButton
+      onPress={() => {
+        navigation.navigate('UserSettingsNavigator');
+      }}
+    />
+  );
+};
+// const HeaderCenter = () => <HeaderLogo source={require('./wordmark.png')} />;
+const HeaderRight = () => {
+  const navigation = useNavigation();
+  return (
+    <SearchButton
+      onPress={() => {
+        navigation.navigate('Search');
+      }}
+    />
+  );
+};
+
+const FellowshipIcon = withTheme(({ theme }) => ({
+  name: 'fellowship',
+  size: theme.sizing.baseUnit * 2,
+  fill: theme.type === 'dark' ? '#FFFFFF' : theme.colors.primary,
+}))(Icon);
+
+const CustomConnectScreen = () => (
+  <ConnectScreenConnected
+    ActionTable={ActionTable}
+    ActionBar={() => (
+      <>
+        <ActionBar />
+        <Query query={GET_USER_PROFILE}>
+          {({ data: campusData, loading: userCampusLoading }) => {
+            const userCampus = get(campusData, 'currentUser.profile.campus');
+            return userCampus ? (
+              <CurrentCampus
+                cardButtonText={'Campus Details'}
+                cardTitle={userCampus.name}
+                coverImage={userCampus.image}
+                headerActionText={'Change'}
+                itemId={userCampus.id}
+                sectionTitle={'Your Campus'}
+                isLoading={userCampusLoading}
+              />
+            ) : (
+              <CurrentCampus
+                cardButtonText={'Select a Campus'}
+                cardTitle={'No location'}
+                headerActionText={'Select'}
+                sectionTitle={'Your Campus'}
+                isLoading={userCampusLoading}
+              />
+            );
+          }}
+        </Query>
+      </>
+    )}
+  />
+);
 
 // we nest stack inside of tabs so we can use all the fancy native header features
 const HomeTab = createFeatureFeedTab({
   options: {
-    headerLeft: FellowshipIcon,
+    headerHideShadow: true,
+    headerLeft: HeaderLeft,
     headerRight: HeaderRight,
-    headerCenter: BlankHeaderCenter,
+    headerCenter: FellowshipIcon,
     headerLargeTitle: false,
   },
   tabName: 'Home',
@@ -83,24 +144,12 @@ const HomeTab = createFeatureFeedTab({
 });
 
 const EventsTab = createFeatureFeedTab({
-  options: {
-    headerLeft: EventsIcon,
-    headerRight: HeaderRight,
-    headerCenter: BlankHeaderCenter,
-    headerLargeTitle: false,
-  },
   tabName: 'Events',
   feedName: 'READ',
   TabComponent: CampusTabComponent,
 });
 
 const WatchTab = createFeatureFeedTab({
-  options: {
-    headerLeft: WatchListenIcon,
-    headerRight: HeaderRight,
-    headerCenter: BlankHeaderCenter,
-    headerLargeTitle: false,
-  },
   tabName: 'Watch',
   feedName: 'WATCH',
   TabComponent: CampusTabComponent,
@@ -152,7 +201,7 @@ const TabNavigator = () => {
       />
       <Screen
         name="Connect"
-        component={Connect}
+        component={CustomConnectScreen}
         options={{ tabBarIcon: tabBarIcon('user') }}
       />
     </ThemedTabNavigator>
