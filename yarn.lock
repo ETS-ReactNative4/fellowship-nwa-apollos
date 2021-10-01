@@ -384,10 +384,10 @@
     entities "^1.1.2"
     htmlparser2 "3.9.2"
 
-"@apollosproject/ui-kit@^2.33.5-canary.3":
-  version "2.33.5-canary.2"
-  resolved "https://registry.yarnpkg.com/@apollosproject/ui-kit/-/ui-kit-2.33.5-canary.2.tgz#b79cb2f74612e573e533704f7d213f1587ac4b27"
-  integrity sha512-hAmX5430EHpt8fsxgw21gE8raH6HDhE4qEZfSjtXP30IyikFDPmqxM08A15UDT8YSBVZWyekfjMk33/oJOHk4A==
+"@apollosproject/ui-kit@^2.33.5-canary.6":
+  version "2.33.5-canary.6"
+  resolved "https://registry.yarnpkg.com/@apollosproject/ui-kit/-/ui-kit-2.33.5-canary.6.tgz#946c8350479664939e85d013a435925cfa1bf158"
+  integrity sha512-DmNK2zwx+WUaOGRHAAbC3oFbAdFwfBUhshRabkrU0jZzeMYAmkG17gtsOUPxVvgWgfTsCK2/yceOekdpo+oyDA==
   dependencies:
     "@react-native-community/blur" "^3.6.0"
     color "^3.1.0"
