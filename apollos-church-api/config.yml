@@ -414,7 +414,7 @@ TABS:
           name: Recent Teachings
           id: 10
 
-    - subtitle: 
+    - subtitle: Recent Series
     # Missing Content Channel in Rock
       algorithms:
         - type: CONTENT_FEED
@@ -425,7 +425,7 @@ TABS:
       type: HorizontalCardList
       primaryAction:
         action: OPEN_CHANNEL
-        title: 'Recent Series'
+        title: 'View all'
         relatedNode:
           __typename: ContentChannel
           id: 12
