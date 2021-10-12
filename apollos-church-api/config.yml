@@ -402,19 +402,20 @@ TABS:
           channelIds:
             - 10
           limit: 4
-      subtitle: Latest messages
+      subtitle: Latest teachings
       type: HeroList
       primaryAction:
         # Right now, you hardcode exactly what GraphQL should return.
         # Long term, we hope to have a more sophisticated mechanism for driving this field
         action: OPEN_CHANNEL
-        title: 'All messages'
+        title: 'View more'
         relatedNode:
           __typename: ContentChannel
-          name: View More Messages
+          name: Recent Teachings
           id: 10
 
-    - subtitle: All Series # Missing Content Channel in Rock
+    - subtitle: 
+    # Missing Content Channel in Rock
       algorithms:
         - type: CONTENT_FEED
           arguments:
@@ -424,11 +425,11 @@ TABS:
       type: HorizontalCardList
       primaryAction:
         action: OPEN_CHANNEL
-        title: 'View All'
+        title: 'Recent Series'
         relatedNode:
           __typename: ContentChannel
           id: 12
-          name: All Series
+          name: Recent Series
 
     - subtitle: Podcasts # Missing Content Channel in Rock
       algorithms:
