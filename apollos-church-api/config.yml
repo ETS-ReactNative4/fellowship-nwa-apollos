@@ -345,7 +345,7 @@ TABS:
         arguments:
           limit: 6
           channelIds: [19]
-      type: HeroList
+      type: VerticalCardList
     - subtitle: Community
       type: HorizontalCardList
       algorithms:
