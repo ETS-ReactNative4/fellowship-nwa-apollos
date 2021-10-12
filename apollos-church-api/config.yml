@@ -353,7 +353,7 @@ TABS:
           arguments:
             category: Community
             channelIds: [11]
-            limit: 3
+            limit: 10
     - subtitle: Family
       type: HorizontalCardList
       algorithms:
@@ -361,7 +361,7 @@ TABS:
           arguments:
             category: Family
             channelIds: [11]
-            limit: 3
+            limit: 10
     - subtitle: Training
       type: HorizontalCardList
       algorithms:
@@ -369,7 +369,7 @@ TABS:
           arguments:
             category: Training
             channelIds: [11]
-            limit: 3
+            limit: 10
     - subtitle: Care
       type: HorizontalCardList
       algorithms:
@@ -377,7 +377,7 @@ TABS:
           arguments:
             category: Care
             channelIds: [11]
-            limit: 3
+            limit: 10
     - subtitle: Local
       type: HorizontalCardList
       algorithms:
@@ -385,7 +385,7 @@ TABS:
           arguments:
             category: Local
             channelIds: [11]
-            limit: 3
+            limit: 10
     - subtitle: Global
       type: HorizontalCardList
       algorithms:
@@ -393,7 +393,7 @@ TABS:
           arguments:
             category: Global
             channelIds: [11]
-            limit: 3
+            limit: 10
 
   WATCH:
     - algorithms:
