@@ -411,7 +411,7 @@ TABS:
         title: 'All messages'
         relatedNode:
           __typename: ContentChannel
-          name: All Messages
+          name: View More Messages
           id: 10
 
     - subtitle: All Series # Missing Content Channel in Rock
