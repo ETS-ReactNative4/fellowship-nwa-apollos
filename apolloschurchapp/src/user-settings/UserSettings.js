@@ -32,6 +32,8 @@ import {
   UserAvatarUpdate,
 } from '@apollosproject/ui-connected';
 
+import ActionBar from '../ui/ActionBar';
+
 const StyledPaddedView = withTheme(({ theme }) => ({
   style: {
     paddingLeft: theme.sizing.baseUnit,
@@ -81,6 +83,9 @@ const UserSettings = () => {
           <UserAvatarUpdate />
           <H3>{firstName && lastName ? `${firstName} ${lastName}` : ''}</H3>
         </Container>
+        <PaddedView>
+          <ActionBar />
+        </PaddedView>
         <RockAuthedWebBrowser>
           {(openUrl) => (
             <>

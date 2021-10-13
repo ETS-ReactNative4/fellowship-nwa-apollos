@@ -21,7 +21,6 @@ import {
 } from '@apollosproject/ui-connected';
 import { checkOnboardingStatusAndNavigate } from '@apollosproject/ui-onboarding';
 import ActionTable from '../ui/ActionTable';
-import ActionBar from '../ui/ActionBar';
 import CurrentCampus from '../ui/CurrentCampus';
 import tabBarIcon from './tabBarIcon';
 
@@ -120,7 +119,6 @@ const CustomConnectScreen = () => (
     ActionTable={ActionTable}
     ActionBar={() => (
       <>
-        <ActionBar />
         <Query query={GET_USER_PROFILE}>
           {({ data: campusData, loading: userCampusLoading }) => {
             const userCampus = get(campusData, 'currentUser.profile.campus');
