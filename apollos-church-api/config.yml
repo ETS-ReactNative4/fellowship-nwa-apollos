@@ -286,7 +286,7 @@ TABS:
           channelIds:
             - 10
           limit: 4
-      subtitle: Latest teachings
+      subtitle: Latest Teachings
       type: HeroList
       primaryAction:
         # Right now, you hardcode exactly what GraphQL should return.
