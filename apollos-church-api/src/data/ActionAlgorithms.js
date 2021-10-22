@@ -1,5 +1,11 @@
 import { ActionAlgorithm } from '@apollosproject/data-connector-rock';
-import { format, isThisWeek } from 'date-fns';
+import {
+  format,
+  formatISO,
+  previousSunday,
+  nextMonday,
+  startOfToday,
+} from 'date-fns';
 
 class dataSource extends ActionAlgorithm.dataSource {
   ACTION_ALGORITHMS = {
@@ -9,6 +15,7 @@ class dataSource extends ActionAlgorithm.dataSource {
   };
 
   async contentFeedAlgorithm({
+    subtitle = '',
     category = '',
     channelIds = [],
     limit = 20,
@@ -28,7 +35,7 @@ class dataSource extends ActionAlgorithm.dataSource {
     return items.map((item, i) => ({
       id: `${item.id}${i}`,
       title: item.title,
-      subtitle: item.contentChannel?.name,
+      subtitle: item.contentChannel?.name || subtitle,
       relatedNode: { ...item, __type: ContentItem.resolveType(item) },
       image: ContentItem.getCoverImage(item),
       action: 'READ_CONTENT',
@@ -76,18 +83,21 @@ class dataSource extends ActionAlgorithm.dataSource {
     const items = (await Promise.all(
       channelIds.map(async (channel) =>
         (await ContentItem.byContentChannelId(channel, category, false))
+          .sort([{ field: 'StartDateTime', direction: 'asc' }])
+          .andFilter(
+            `((StartDateTime gt datetime'${formatISO(
+              previousSunday(startOfToday())
+            )}') and (StartDateTime lt datetime'${formatISO(
+              nextMonday(startOfToday())
+            )}'))`
+          )
           .top(limit)
           .skip(skip)
-          .sort([{ field: 'StartDateTime', direction: 'asc' }])
           .get()
       )
     )).flat();
 
-    const itemsByDate = items.filter((key) =>
-      isThisWeek(new Date(key.startDateTime), 1)
-    );
-
-    return itemsByDate.map((item, i) => ({
+    return items.map((item, i) => ({
       id: `${item.id}${i}`,
       title: item.title,
       subtitle: format(new Date(item.startDateTime), 'E, MMM d') || '',
