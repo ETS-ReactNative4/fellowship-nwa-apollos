@@ -7,13 +7,10 @@
     "setup": "./scripts/init.sh",
     "migrator": "node ./lib/migrator.js",
     "start": "NODE_ENV=production node ./lib/index.js",
-    "start:dev":
-      "linkemon ./src/index.js --exec babel-node --delay 2 -e js,yaml,json,yml",
+    "start:dev": "linkemon ./src/index.js --exec babel-node --delay 2 -e js,yaml,json,yml",
     "postinstall": "yarn build",
-    "build":
-      "NODE_ENV=production rm -rf ./lib && mkdir -p lib && babel ./src -d ./lib",
-    "test":
-      "echo \"No tests in apollos-church-api, all tested code is located in @apollosproject npm modules\"",
+    "build": "NODE_ENV=production rm -rf ./lib && mkdir -p lib && babel ./src -d ./lib",
+    "test": "echo \"No tests in apollos-church-api, all tested code is located in @apollosproject npm modules\"",
     "lint": "eslint ./src --ext .js",
     "translate": "node scripts/translate.js"
   },
@@ -38,7 +35,9 @@
     "@apollosproject/rock-apollo-data-source": "^2.33.4",
     "@apollosproject/server-core": "^2.33.4",
     "apollo-server": "^2.24.1",
+    "apollo-server-cache-redis": "^3.2.0",
     "apollo-server-express": "2.14.2",
+    "apollo-server-plugin-response-cache": "^3.3.0",
     "color": "3.0.0",
     "cors": "^2.8.5",
     "date-fns": "^2.24.0",
