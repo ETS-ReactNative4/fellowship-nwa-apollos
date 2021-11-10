@@ -236,8 +236,14 @@ class dataSource extends ContentItem.dataSource {
         resources.map(
           async ({ attributeValues: { linkName, linkUrl, file } }) => {
             let url = '';
+
             if (linkUrl.value) {
-              url = ApollosConfig.ROCK.URL + linkUrl.value;
+              url = new URL(
+                linkUrl.value,
+                !linkUrl.value.startsWith('http')
+                  ? ApollosConfig.ROCK.URL
+                  : undefined
+              );
             } else if (file.value) {
               const blob = await BinaryFiles.request()
                 .filter(`Guid eq guid'${file.value}'`)
