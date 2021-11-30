@@ -29,6 +29,11 @@ const resolver = {
         attributeValues.description?.value || content
       ),
   },
+  MediaContentItem: {
+    ...ContentItem.resolver.MediaContentItem,
+    featureFeed: ({ id }, args, { dataSources: { FeatureFeed } }) =>
+      FeatureFeed.getFeed({ type: 'contentItem', args: { id } }),
+  },
   ContentSeriesContentItem: {
     ...ContentItem.resolver.ContentSeriesContentItem,
     htmlContent: ({ content, attributeValues }, _, { dataSources }) =>
