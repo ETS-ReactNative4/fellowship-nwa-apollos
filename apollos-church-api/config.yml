@@ -192,6 +192,21 @@ TABS:
           limit: 1
       subtitle: Advent Devotionals
       type: VerticalCardList
+    - algorithms: # Advent Devos HeroList
+      - type: CONTENT_FEED
+        arguments:
+          channelIds:
+            - 28
+          limit: 3
+      subtitle: Latest Devotionals
+      type: HeroCardList
+      primaryAction:
+        action: OPEN_CHANNEL
+        title: 'View All'
+        relatedNode:
+          __typename: ContentChannel
+          id: 28
+          name: Devotionals
     # - subtitle: Grow Together # This pulls the Daily Scripture for today
     #   algorithms:
     #   - type: CONTENT_FEED
