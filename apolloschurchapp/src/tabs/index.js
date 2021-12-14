@@ -202,7 +202,6 @@ const { Navigator, Screen } = createBottomTabNavigator();
 
 const ThemedTabNavigator = withTheme(({ theme }) => ({
   tabBarOptions: {
-    showLabel: false,
     activeTintColor: theme.type === 'dark' ? '#FFFFFF' : '#000000',
   },
 }))(Navigator);
