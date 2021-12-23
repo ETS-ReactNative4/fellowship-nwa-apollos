@@ -509,7 +509,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export EXTRA_PACKAGER_ARGS=\\\"--sourcemap-output $TMPDIR/$(md5 -qs \\\"$CONFIGURATION_BUILD_DIR\\\")-main.jsbundle.map\\\"\\nexport NODE_BINARY=node\\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+			shellScript = "export EXTRA_PACKAGER_ARGS=\"--sourcemap-output $TMPDIR/$(md5 -qs \"$CONFIGURATION_BUILD_DIR\")-main.jsbundle.map\"\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		07E1EAA0838946D1A5AB5FCD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
