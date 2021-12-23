@@ -64,7 +64,7 @@ platform :ios do
     testflight(
       distribute_only: true,
       distribute_external: true,
-      groups: ["External Beta"]
+      groups: ["Beta Testers"]
     )
   end
 
