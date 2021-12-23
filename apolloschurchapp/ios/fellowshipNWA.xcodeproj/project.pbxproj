@@ -815,7 +815,7 @@
 				CODE_SIGN_ENTITLEMENTS = fellowshipNWA/fellowshipNWA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 269;
+				CURRENT_PROJECT_VERSION = 270;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8P769WS3QT;
 				HEADER_SEARCH_PATHS = (
@@ -848,7 +848,7 @@
 				CODE_SIGN_ENTITLEMENTS = fellowshipNWA/fellowshipNWA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 269;
+				CURRENT_PROJECT_VERSION = 270;
 				DEVELOPMENT_TEAM = 8P769WS3QT;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
