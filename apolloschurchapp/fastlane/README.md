@@ -45,6 +45,11 @@ Promote the most recent Testflight version to production
 fastlane android deploy
 ```
 Deploy a new version to the Google Play
+### android beta
+```
+fastlane android beta
+```
+Promote current build to beta
 
 ----
 
