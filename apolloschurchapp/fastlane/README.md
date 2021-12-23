@@ -50,6 +50,11 @@ Deploy a new version to the Google Play
 fastlane android beta
 ```
 Promote current build to beta
+### android production
+```
+fastlane android production
+```
+Promote current build to production
 
 ----
 
