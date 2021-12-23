@@ -413,16 +413,6 @@
 						LastSwiftMigration = 1220;
 						ProvisioningStyle = Manual;
 					};
-					2D02E47A1E0B4A5D006451C7 = {
-						CreatedOnToolsVersion = 8.2.1;
-						LastSwiftMigration = 1230;
-						ProvisioningStyle = Automatic;
-					};
-					2D02E48F1E0B4A5D006451C7 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 2D02E47A1E0B4A5D006451C7;
-					};
 					BF49AE832649A852001C7B78 = {
 						CreatedOnToolsVersion = 12.5;
 						DevelopmentTeam = 8P769WS3QT;
@@ -714,7 +704,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SOURCE_MAP=\"$TMPDIR/$(md5 -qs \"$CONFIGURATION_BUILD_DIR\")-main.jsbundle.map\" ../node_modules/@bugsnag/react-native/bugsnag-react-native-xcode.sh";
+			shellScript = "SOURCE_MAP=\"$TMPDIR/$(md5 -qs \"$CONFIGURATION_BUILD_DIR\")-main.jsbundle.map\" ../node_modules/@bugsnag/react-native/bugsnag-react-native-xcode.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
