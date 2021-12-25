@@ -33,6 +33,7 @@ import {
   // ContentChannel,
   Feature as RockFeature,
   // ActionAlgorithm as RockActionAlgorithm,
+  // PrayerRequest as RockPrayerRequest,
 } from '@apollosproject/data-connector-rock';
 
 import {
