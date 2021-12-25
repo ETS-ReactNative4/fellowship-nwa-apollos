@@ -1,6 +1,6 @@
 {
   "name": "fellowshipNWA",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "private": true,
   "engines": {
     "node": ">=14"
@@ -44,8 +44,8 @@
     "@apollosproject/react-native-airplay-btn": "^0.2.0",
     "@apollosproject/ui-analytics": "^2.41.0",
     "@apollosproject/ui-auth": "^2.41.0",
-    "@apollosproject/ui-fragments": "2.41.1-canary.3",
     "@apollosproject/ui-connected": "^2.41.1-canary.6",
+    "@apollosproject/ui-fragments": "2.41.1-canary.3",
     "@apollosproject/ui-htmlview": "^2.41.0",
     "@apollosproject/ui-kit": "^2.41.1-canary.4",
     "@apollosproject/ui-mapview": "^2.41.0",
