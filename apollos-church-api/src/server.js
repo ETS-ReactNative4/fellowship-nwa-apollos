@@ -66,22 +66,22 @@ const apolloServer = new ApolloServer({
     },
   },
   uploads: false,
-  ...(process.env.REDIS_URL
-    ? {
-        cache: new BaseRedisCache({
-          client: new Redis(process.env.REDIS_URL, {
-            keyPrefix: `apollo-server-cache-${process.env.NODE_ENV}`,
-            ...(process.env.REDIS_URL.includes('rediss')
-              ? {
-                  tls: {
-                    rejectUnauthorized: false,
-                  },
-                }
-              : {}),
-          }),
-        }),
-      }
-    : {}),
+  // ...(process.env.REDIS_URL
+  // ? {
+  // cache: new BaseRedisCache({
+  // client: new Redis(process.env.REDIS_URL, {
+  // keyPrefix: `apollo-server-cache-${process.env.NODE_ENV}`,
+  // ...(process.env.REDIS_URL.includes('rediss')
+  // ? {
+  // tls: {
+  // rejectUnauthorized: false,
+  // },
+  // }
+  // : {}),
+  // }),
+  // }),
+  // }
+  // : {}),
   cacheControl: {
     stripFormattedExtensions: false,
     calculateHttpHeaders: true,
