@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import * as Search from '@apollosproject/data-connector-algolia-search';
+import Queue from 'bull';
 
 const { schema, resolver, jobs } = Search;
 
@@ -82,4 +83,16 @@ class dataSource extends Search.dataSource {
   }
 }
 
-export { schema, resolver, dataSource, jobs };
+const customJobs = (args) => {
+  const full = new Queue('algolia-full-index-queue');
+  const delta = new Queue('algolia-delta-index-queue');
+  full.clean(5000);
+  full.clean(5000, 'failed');
+  full.empty();
+  delta.clean(5000);
+  delta.clean(5000, 'failed');
+  delta.empty();
+  jobs(args);
+};
+
+export { schema, resolver, dataSource, customJobs as jobs };
