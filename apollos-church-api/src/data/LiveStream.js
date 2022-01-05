@@ -9,6 +9,7 @@ import {
 } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import * as LiveStream from '@apollosproject/data-connector-church-online';
+import { AuthenticationError } from 'apollo-server';
 
 const { schema, resolver } = LiveStream;
 
@@ -61,8 +62,20 @@ class dataSource extends LiveStream.dataSource {
   };
 
   async getLiveStream() {
-    const { id } = await this.context.dataSources.Auth.getCurrentPerson();
-    const campus = await this.context.dataSources.Campus.getForPerson({ id });
+    // may not be logged in yet
+    let person;
+    try {
+      person = await this.context.dataSources.Auth.getCurrentPerson();
+    } catch (e) {
+      if (e instanceof AuthenticationError) {
+        throw new AuthenticationError('Must be logged in for livestreams');
+      } else {
+        throw e;
+      }
+    }
+    const campus = await this.context.dataSources.Campus.getForPerson({
+      id: person.id,
+    });
     const { times, url } = this.getCampusMap()[campus.name];
 
     return {
