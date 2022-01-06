@@ -465,10 +465,10 @@
     color "^3.1.2"
     use-debounce "5.1.0"
 
-"@apollosproject/ui-notifications@^2.41.0":
-  version "2.41.0"
-  resolved "https://registry.yarnpkg.com/@apollosproject/ui-notifications/-/ui-notifications-2.41.0.tgz#d967c1d4e2d5068354f8a6944e9428aadee44d8a"
-  integrity sha512-Rr/Bz/f0rpeESzDZSXFHcdh9Q+Vvmz+1IcpbEou0633n5gml5FlERxw5Q/gLVGJSlhk0AT/bXbtg6a6iQNVz+A==
+"@apollosproject/ui-notifications@^2.41.1-canary.15":
+  version "2.41.1-canary.15"
+  resolved "https://registry.yarnpkg.com/@apollosproject/ui-notifications/-/ui-notifications-2.41.1-canary.15.tgz#0d1e21da5e6178ea834b2fd76be8dfb049f8d873"
+  integrity sha512-vnwTheirNpQAh/UsPG1GBqqyri4cnKHD4skARWprLVD8lGJLr5tSMyTReElH8RyFzfi49bpIXI5h9Qes2D0lOQ==
   dependencies:
     lodash "^4.17.11"
     react-native-permissions "^2.0.5"
