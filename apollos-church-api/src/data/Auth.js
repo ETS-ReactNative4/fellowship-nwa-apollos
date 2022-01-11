@@ -26,7 +26,7 @@ class dataSource extends Auth.dataSource {
         // const person = await this.lookupUserFromCache({ userCookie });
 
         // if (!person) {
-        throw new AuthenticationError('Invalid user cookie; no person found');
+        throw new AuthenticationError(e);
         // }
         // TODO: Send over a new cookie to be stored in the `set-cookie` header.
         // return person;
