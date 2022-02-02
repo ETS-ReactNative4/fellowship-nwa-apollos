@@ -40,7 +40,10 @@ class dataSource extends ActionAlgorithm.dataSource {
       relatedNode: { ...item, __type: ContentItem.resolveType(item) },
       image: ContentItem.getCoverImage(item),
       action: 'READ_CONTENT',
-      summary: ContentItem.createSummary(item),
+      summary:
+        subtitle === "Today's Reading"
+          ? format(new Date(item.startDateTime), 'E, MMM d')
+          : ContentItem.createSummary(item),
     }));
   }
 
