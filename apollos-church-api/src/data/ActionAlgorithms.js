@@ -2,8 +2,8 @@ import { ActionAlgorithm } from '@apollosproject/data-connector-rock';
 import {
   format,
   formatISO,
-  previousSunday,
-  nextMonday,
+  previousSaturday,
+  nextSunday,
   startOfToday,
 } from 'date-fns';
 
@@ -98,7 +98,7 @@ class dataSource extends ActionAlgorithm.dataSource {
   async weeklyScriptureFeedAlgorithm({
     category = '',
     channelIds = [],
-    limit = 5,
+    limit = 7,
     skip = 0,
   } = {}) {
     const { ContentItem } = this.context.dataSources;
@@ -109,9 +109,9 @@ class dataSource extends ActionAlgorithm.dataSource {
           .sort([{ field: 'StartDateTime', direction: 'asc' }])
           .andFilter(
             `((StartDateTime gt datetime'${formatISO(
-              previousSunday(startOfToday())
+              previousSaturday(startOfToday())
             )}') and (StartDateTime lt datetime'${formatISO(
-              nextMonday(startOfToday())
+              nextSunday(startOfToday())
             )}'))`
           )
           .top(limit)
