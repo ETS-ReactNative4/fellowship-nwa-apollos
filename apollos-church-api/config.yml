@@ -186,6 +186,7 @@ TABS:
       isCard: false
       type: PrayerList
       subtitle: Daily Prayer
+    ## These channels are for Advent Devotionals and can be reused yearly
     # - algorithms: # Birth of Christ in Scripture
     #   - type: SINGLE_CONTENT_ITEM_BY_ID
     #     arguments:
@@ -304,6 +305,15 @@ TABS:
             category: Global
             channelIds: [11]
             limit: 10
+    - type: ActionTable
+      actions:
+        [
+          {
+            title: View All Events,
+            action: OPEN_URL,
+            relatedNode: { __typename: Url, url: 'https://www.fellowshiprogers.org/eventsandclasses' },
+          },
+        ]
 
   WATCH:
     - algorithms:
