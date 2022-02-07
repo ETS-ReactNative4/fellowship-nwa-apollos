@@ -310,7 +310,7 @@ TABS:
         [
           {
             title: View All Events,
-            action: OPEN_URL,
+            action: OPEN_AUTHENTICATED_URL,
             relatedNode: { __typename: Url, url: 'https://www.fellowshiprogers.org/eventsandclasses' },
           },
         ]
