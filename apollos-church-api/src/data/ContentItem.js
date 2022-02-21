@@ -127,7 +127,9 @@ class dataSource extends ContentItem.dataSource {
     }
 
     // 12 - sermon series
-    if (id === 12) {
+    // 32 - Scripture Readings
+    // 41 - discussion guides
+    if ([12, 32, 41].includes(id)) {
       const congregationAttributeValues = await this.request('AttributeValues')
         .filter(
           `AttributeId eq 17890 and substringof('${name
