@@ -138,23 +138,26 @@ class dataSource extends ContentItem.dataSource {
         )
         .cache({ ttl: 60 })
         .get();
-      // ShowOnApp attribute
-      const showOnAppAttributeValues = await this.request('AttributeValues')
-        .filter(`AttributeId eq 17246 and Value eq 'True'`)
-        .cache({ ttl: 60 })
-        .get();
-      const seriesAttributeValues = congregationAttributeValues.filter(
-        ({ entityId }) =>
+      let attributes;
+      // for readings and discussion, just pay attention to congregation
+      if ([32, 41].includes(id)) {
+        attributes = congregationAttributeValues;
+      } else {
+        // ShowOnApp attribute
+        const showOnAppAttributeValues = await this.request('AttributeValues')
+          .filter(`AttributeId eq 17246 and Value eq 'True'`)
+          .cache({ ttl: 60 })
+          .get();
+        attributes = congregationAttributeValues.filter(({ entityId }) =>
           showOnAppAttributeValues
             .map((attr) => attr.entityId)
             .includes(entityId)
-      );
-      return this.getFromIds(
-        seriesAttributeValues.map(({ entityId }) => entityId)
-      )
-        .andFilter(`ContentChannelId eq ${id}`)
-        .cache({ ttl: 60 })
-        .orderBy('StartDateTime', 'desc');
+        );
+        return this.getFromIds(attributes.map(({ entityId }) => entityId))
+          .andFilter(`ContentChannelId eq ${id}`)
+          .cache({ ttl: 60 })
+          .orderBy('StartDateTime', 'desc');
+      }
     }
 
     // 19 - News Highlights
