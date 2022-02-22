@@ -125,11 +125,29 @@ class dataSource extends ContentItem.dataSource {
         .cache({ ttl: 60 })
         .orderBy('StartDateTime', 'desc');
     }
+    // 32 - scripture readings
+    // Congregation attribute returns the lowercase, hyphenated campus name
+    if (id === 32) {
+      const congregationAttributeValues = await this.request('AttributeValues')
+        .filter(
+          `AttributeId eq 8701 and substringof('${name
+            .toLowerCase()
+            .replace(' ', '-')}', Value) eq true`
+        )
+        .cache({ ttl: 60 })
+        .get();
+      const scriptureItemIds = congregationAttributeValues.map(
+        ({ entityId }) => entityId
+      );
+      return this.getFromIds(scriptureItemIds)
+        .andFilter(`ContentChannelId eq ${id}`)
+        .cache({ ttl: 60 })
+        .orderBy('StartDateTime', 'desc');
+    }
 
     // 12 - sermon series
-    // 32 - Scripture Readings
     // 41 - discussion guides
-    if ([12, 32, 41].includes(id)) {
+    if ([12, 41].includes(id)) {
       const congregationAttributeValues = await this.request('AttributeValues')
         .filter(
           `AttributeId eq 17890 and substringof('${name
