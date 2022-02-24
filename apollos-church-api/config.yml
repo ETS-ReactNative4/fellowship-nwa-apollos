@@ -225,7 +225,7 @@ TABS:
             - 32
           subtitle: Today's Reading
       type: VerticalCardList
-    - subtitle: Weekly Readings # This pulls the 5 Daily Scriptures for this week
+    - subtitle: Daily Readings # This pulls the 5 Daily Scriptures for this week
       algorithms:
         - type: WEEKLY_SCRIPTURE_FEED
           arguments:
