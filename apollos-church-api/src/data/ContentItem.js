@@ -116,7 +116,6 @@ class dataSource extends ContentItem.dataSource {
       id: person.id,
     });
     // 10 - sermons
-    // Congregation attribute returns the lowercase, hyphenated campus name
     // Service attribute - we only want "adult" services
     if (id === 10) {
       const sermonIds = await this.getAllFilteredSermonIds();
@@ -125,67 +124,60 @@ class dataSource extends ContentItem.dataSource {
         .cache({ ttl: 60 })
         .orderBy('StartDateTime', 'desc');
     }
-    // 32 - scripture readings
-    // Congregation attribute returns the lowercase, hyphenated campus name
-    if (id === 32) {
-      const congregationAttributeValues = await this.request('AttributeValues')
-        .filter(
-          `AttributeId eq 8701 and substringof('${name
-            .toLowerCase()
-            .replace(' ', '-')}', Value) eq true`
-        )
-        .cache({ ttl: 60 })
-        .get();
-      const scriptureItemIds = congregationAttributeValues.map(
-        ({ entityId }) => entityId
-      );
-      return this.getFromIds(scriptureItemIds)
-        .andFilter(`ContentChannelId eq ${id}`)
-        .cache({ ttl: 60 })
-        .orderBy('StartDateTime', 'desc');
-    }
 
     // 12 - sermon series
+    // 32 - scripture readings
     // 41 - discussion guides
-    if ([12, 41].includes(id)) {
-      const congregationAttributeValues = await this.request('AttributeValues')
+    if ([12, 32, 41].includes(id)) {
+      const attrMap = {
+        12: 17890,
+        32: 20495,
+        41: 18013,
+      };
+      const attrID = attrMap[id.toString()];
+      // congregation attribute returns the lowercase, hyphenated campus name
+      let attributes = await this.request('AttributeValues')
         .filter(
-          `AttributeId eq 17890 and substringof('${name
+          `AttributeId eq ${attrID} and substringof('${name
             .toLowerCase()
             .replace(' ', '-')}', Value) eq true`
         )
         .cache({ ttl: 60 })
         .get();
-      let attributes;
-      // for readings and discussion, just pay attention to congregation
-      if ([32, 41].includes(id)) {
-        attributes = congregationAttributeValues;
-      } else {
+
+      // for series, also consider showOnApp
+      if (id === 12) {
         // ShowOnApp attribute
         const showOnAppAttributeValues = await this.request('AttributeValues')
           .filter(`AttributeId eq 17246 and Value eq 'True'`)
           .cache({ ttl: 60 })
           .get();
-        attributes = congregationAttributeValues.filter(({ entityId }) =>
+        attributes = attributes.filter(({ entityId }) =>
           showOnAppAttributeValues
             .map((attr) => attr.entityId)
             .includes(entityId)
         );
-        return this.getFromIds(attributes.map(({ entityId }) => entityId))
-          .andFilter(`ContentChannelId eq ${id}`)
-          .cache({ ttl: 60 })
-          .orderBy('StartDateTime', 'desc');
       }
+
+      return this.getFromIds(attributes.map(({ entityId }) => entityId))
+        .andFilter(`ContentChannelId eq ${id}`)
+        .cache({ ttl: 60 })
+        .orderBy('StartDateTime', 'desc');
     }
 
     // 19 - News Highlights
     // 11 - Website Promotions
-    // Campus attribute (10878 for 19, 5083 for 11) returns a string list of campus guids
+    // Campus attribute returns a string list of campus guids
     // Category attribute returns a guid from the Website Promotion Category defined type
-    if (id === 19 || id === 11) {
+    if ([11, 19].includes(id)) {
+      const attrMap = {
+        19: 10878,
+        11: 5083,
+      };
+      const attrID = attrMap[id.toString()];
       const campusAttributeValues = await this.request('AttributeValues')
         .filter(
-          `(AttributeId eq 10878 or AttributeId eq 5083) and substringof('${campusGuid}', Value)`
+          `AttributeId eq ${attrID} and substringof('${campusGuid}', Value)`
         )
         .cache({ ttl: 60 })
         .get();
