@@ -232,7 +232,6 @@ TABS:
             channelIds:
               - 32
       type: ActionList
-      isCard: false
     - algorithms: # Weekly Discussion Guide
         - type: CONTENT_FEED
           arguments:
