@@ -2,9 +2,10 @@ import { ActionAlgorithm } from '@apollosproject/data-connector-rock';
 import {
   format,
   formatISO,
-  previousSaturday,
+  previousSunday,
   nextSunday,
   startOfToday,
+  isSunday,
 } from 'date-fns';
 
 class dataSource extends ActionAlgorithm.dataSource {
@@ -105,11 +106,13 @@ class dataSource extends ActionAlgorithm.dataSource {
 
     const items = (await Promise.all(
       channelIds.map(async (channel) =>
-        (await ContentItem.byContentChannelId(channel))
+        (await ContentItem.byContentChannelId(channel, '', true, false))
           .sort([{ field: 'StartDateTime', direction: 'asc' }])
           .andFilter(
             `((StartDateTime gt datetime'${formatISO(
-              previousSaturday(startOfToday())
+              isSunday(startOfToday())
+                ? startOfToday()
+                : previousSunday(startOfToday())
             )}') and (StartDateTime lt datetime'${formatISO(
               nextSunday(startOfToday())
             )}'))`

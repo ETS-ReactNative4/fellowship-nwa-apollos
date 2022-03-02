@@ -103,7 +103,28 @@ class dataSource extends ContentItem.dataSource {
     return sermonAttributeValues.map((attr) => attr.entityId);
   };
 
-  byContentChannelId = async (id, category = '', filtered = true) => {
+  getFromIds = (ids = [], liveOnly = true) => {
+    if (ids.length === 0) return this.request().empty();
+    let request;
+    if (get(ApollosConfig, 'ROCK.USE_PLUGIN', false)) {
+      // Avoids issue when fetching more than ~10 items
+      // Caused by an Odata node limit.
+      request = this.request(
+        `Apollos/GetContentChannelItemsByIds?ids=${ids.join(',')}`
+      );
+    } else {
+      request = this.request().filterOneOf(ids.map((id) => `Id eq ${id}`));
+    }
+    if (liveOnly) return request.andFilter(this.LIVE_CONTENT());
+    return request;
+  };
+
+  byContentChannelId = async (
+    id,
+    category = '',
+    filtered = true,
+    liveOnly = true
+  ) => {
     if (!filtered)
       return this.request()
         .filter(`ContentChannelId eq ${id}`)
@@ -159,7 +180,10 @@ class dataSource extends ContentItem.dataSource {
         );
       }
 
-      return this.getFromIds(attributes.map(({ entityId }) => entityId))
+      return this.getFromIds(
+        attributes.map(({ entityId }) => entityId),
+        liveOnly
+      )
         .andFilter(`ContentChannelId eq ${id}`)
         .cache({ ttl: 60 })
         .orderBy('StartDateTime', 'desc');
