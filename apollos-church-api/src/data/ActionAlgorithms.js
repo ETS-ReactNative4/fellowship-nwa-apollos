@@ -109,7 +109,7 @@ class dataSource extends ActionAlgorithm.dataSource {
         (await ContentItem.byContentChannelId(channel, '', true, false))
           .sort([{ field: 'StartDateTime', direction: 'asc' }])
           .andFilter(
-            `((StartDateTime gt datetime'${formatISO(
+            `((StartDateTime ge datetime'${formatISO(
               isSunday(startOfToday())
                 ? startOfToday()
                 : previousSunday(startOfToday())
