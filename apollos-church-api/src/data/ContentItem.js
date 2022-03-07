@@ -211,16 +211,24 @@ class dataSource extends ContentItem.dataSource {
           .filter('DefinedTypeId eq 136')
           .cache({ ttl: 60 })
           .get();
-        const { guid } = categories.find(({ value }) => value === category);
-        const categoryAttributeValues = await this.request('AttributeValues')
-          .filter(`AttributeId eq 10269 and Value eq '${guid}'`)
-          .cache({ ttl: 60 })
-          .get();
-        attributeValues = campusAttributeValues.filter(({ entityId }) =>
-          categoryAttributeValues
-            .map((attr) => attr.entityId)
-            .includes(entityId)
+        const matchingCategory = categories.find(
+          ({ value }) => value === category
         );
+        if (matchingCategory) {
+          const categoryAttributeValues = await this.request('AttributeValues')
+            .filter(
+              `AttributeId eq 10269 and Value eq '${matchingCategory.guid}'`
+            )
+            .cache({ ttl: 60 })
+            .get();
+          attributeValues = campusAttributeValues.filter(({ entityId }) =>
+            categoryAttributeValues
+              .map((attr) => attr.entityId)
+              .includes(entityId)
+          );
+        } else {
+          attributeValues = campusAttributeValues;
+        }
       } else attributeValues = campusAttributeValues;
       return this.getFromIds(attributeValues.map((attr) => attr.entityId))
         .andFilter(`ContentChannelId eq ${id}`)
