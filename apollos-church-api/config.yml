@@ -288,14 +288,6 @@ TABS:
             category: Care
             channelIds: [11]
             limit: 10
-    - subtitle: Local
-      type: HorizontalCardList
-      algorithms:
-        - type: CONTENT_FEED
-          arguments:
-            category: Local
-            channelIds: [11]
-            limit: 10
     - subtitle: Global
       type: HorizontalCardList
       algorithms:
