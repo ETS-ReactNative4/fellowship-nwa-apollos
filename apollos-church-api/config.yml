@@ -239,6 +239,13 @@ TABS:
             channelIds:
               - 41
       type: VerticalCardList
+    - algorithms: # Fight For Godliness, Digital Book
+        - type: CONTENT_FEED
+          arguments:
+            limit: 1
+            channelIds:
+              - 37
+      type: VerticalCardList
     - subtitle: Featured
       algorithms:
         - type: CONTENT_FEED
