@@ -156,7 +156,7 @@ ROCK_MAPPINGS:
       ContentChannelId: [12, 37, 44]
     DevotionalContentItem:
       EntityType: ContentChannelItem
-      ContentChannelId: [32, 38]
+      ContentChannelId: [32, 38, 31]
     MediaContentItem:
       EntityType: ContentChannelItem
     UniversalContentItem:
@@ -177,6 +177,7 @@ ROCK_MAPPINGS:
     - 10
     - 38
     - 28
+    - 31
 
   SERMON_CHANNEL_ID: 10
 
