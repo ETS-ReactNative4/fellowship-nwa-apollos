@@ -18,7 +18,7 @@ import {
   Interactions as RockInteractions,
   RockConstants,
   Sharable,
-  // Auth,
+  Auth,
   PersonalDevice,
   Template,
   AuthSms,
@@ -68,7 +68,6 @@ import * as RockPerson from './RockPerson';
 import * as RockCampus from './Campus';
 import * as Search from './Algolia';
 import * as LiveStream from './LiveStream';
-import * as Auth from './Auth';
 
 // This modules ties together certain updates so they occurs in both Rock and Postgres.
 // Will be eliminated in the future through an enhancement to the Shovel
