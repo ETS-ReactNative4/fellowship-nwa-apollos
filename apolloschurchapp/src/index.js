@@ -29,7 +29,6 @@ import {
   UserSettingsConnected,
 } from '@apollosproject/ui-connected';
 import Providers from './Providers';
-import MinistryEventList from './ui/MinistryEventList';
 import Tabs from './tabs';
 import customTheme, { customIcons } from './theme';
 
@@ -128,11 +127,6 @@ const App = () => {
                   title: route.params.itemTitle || 'Content Feed',
                   stackPresentation: 'push',
                 })}
-              />
-              <Screen
-                name="MinistryEventList"
-                component={MinistryEventList}
-                options={{ title: 'MinistryEventList' }}
               />
               <Screen
                 name="Auth"

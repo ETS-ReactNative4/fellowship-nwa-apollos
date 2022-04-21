@@ -8,6 +8,7 @@ const resolver = {
     ...ContentChannel.resolver.ContentChannel,
     childContentItemsConnection: async ({ id }, args, { dataSources }) =>
       dataSources.ContentItem.paginate({
+        // custom, the cursor function is not async by default
         cursor: await dataSources.ContentItem.byContentChannelId(id),
         args,
       }),
